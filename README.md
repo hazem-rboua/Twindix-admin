@@ -1,5 +1,17 @@
 # Twindix Admin Panel Monorepo
 
+## Quick Start
+
+**First step:**
+
+Run the following command in the root of the monorepo to install all dependencies and set up Husky git hooks:
+
+```sh
+pnpm install
+```
+
+This will ensure commit message conventions are enforced automatically.
+
 ## About Twindix
 Twindix empowers leaders through psychological insight and management science to unlock personal and team potential.
 
