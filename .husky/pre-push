@@ -1,0 +1,33 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Check if there are staged changes in the frontend directory
+changed_files=$(git diff --cached --name-only)
+
+should_check_frontend=false
+for file in $changed_files; do
+  case $file in
+    frontend/*)
+      should_check_frontend=true
+      break
+      ;;
+  esac
+done
+
+if [ "$should_check_frontend" = true ]; then
+  echo "\n🔎 Running lint and build checks for frontend..."
+  cd frontend || exit 1
+  pnpm lint
+  if [ $? -ne 0 ]; then
+    echo "\n❌ Lint errors found in frontend. Please fix them before pushing."
+    exit 1
+  fi
+  pnpm build
+  if [ $? -ne 0 ]; then
+    echo "\n❌ Build failed in frontend. Please fix build errors before pushing."
+    exit 1
+  fi
+  cd ..
+fi
+
+echo "\n✅ Pre-push checks passed. Proceeding with push."
