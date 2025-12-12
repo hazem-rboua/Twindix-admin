@@ -51,7 +51,6 @@ tests/**/results/
 tests/**/processed/
 tests/**/matchreport.zip
 tests/**/logs.txt
-playwright-report/
 test-results/
 .nyc_output/
 coverage/
