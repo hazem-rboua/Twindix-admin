@@ -1,4 +1,2 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 
 . "$(dirname "$0")/commit-msg-validator.sh" "$1"
