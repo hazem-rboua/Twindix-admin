@@ -1,4 +1,3 @@
-
 #!/bin/sh
 # Check if there are staged changes in the frontend directory
 changed_files=$(git diff --cached --name-only)
