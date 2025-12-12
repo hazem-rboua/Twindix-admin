@@ -1,9 +1,11 @@
 #!/bin/sh
-# Check if there are staged changes in the frontend directory
-changed_files=$(git diff --cached --name-only)
+echo "\n✅ Pre-push checks passed. Proceeding with push."
+# Check if there are any changes (staged or unstaged) in the frontend directory
+changed_files=$(git diff --name-only --cached --diff-filter=ACMRTUXB)
+unstaged_files=$(git diff --name-only --diff-filter=ACMRTUXB)
 
 should_check_frontend=false
-for file in $changed_files; do
+for file in $changed_files $unstaged_files; do
   case $file in
     frontend/*)
       should_check_frontend=true
@@ -26,6 +28,8 @@ if [ "$should_check_frontend" = true ]; then
     exit 1
   fi
   cd ..
+  echo "\n✅ Pre-push checks passed. Proceeding with push."
+  exit 0
 fi
 
-echo "\n✅ Pre-push checks passed. Proceeding with push."
+echo "\n✅ No frontend changes detected. Proceeding with push."
