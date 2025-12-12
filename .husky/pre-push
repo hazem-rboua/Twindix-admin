@@ -1,6 +1,9 @@
 #!/bin/sh
-echo "\n✅ Pre-push checks passed. Proceeding with push."
-# Check if there are any changes (staged or unstaged) in the frontend directory
+# Always run from the repo root
+REPO_ROOT=$(git rev-parse --show-toplevel)
+cd "$REPO_ROOT" || exit 1
+
+# Check for changes in the frontend directory (staged or unstaged)
 changed_files=$(git diff --name-only --cached --diff-filter=ACMRTUXB)
 unstaged_files=$(git diff --name-only --diff-filter=ACMRTUXB)
 
@@ -27,7 +30,7 @@ if [ "$should_check_frontend" = true ]; then
     echo "\n❌ Build failed in frontend. Please fix build errors before pushing."
     exit 1
   fi
-  cd ..
+  cd "$REPO_ROOT" || exit 1
   echo "\n✅ Pre-push checks passed. Proceeding with push."
   exit 0
 fi
