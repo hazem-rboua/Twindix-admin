@@ -3,12 +3,17 @@
 REPO_ROOT=$(git rev-parse --show-toplevel)
 cd "$REPO_ROOT" || exit 1
 
-# Check for changes in the frontend directory (staged or unstaged)
-changed_files=$(git diff --name-only --cached --diff-filter=ACMRTUXB)
-unstaged_files=$(git diff --name-only --diff-filter=ACMRTUXB)
+# Get the current branch name
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Fetch the latest remote info
+git fetch origin "$BRANCH"
+
+# Check for committed changes in the frontend directory that will be pushed
+changed_files=$(git diff --name-only origin/$BRANCH)
 
 should_check_frontend=false
-for file in $changed_files $unstaged_files; do
+for file in $changed_files; do
   case $file in
     frontend/*)
       should_check_frontend=true
