@@ -1,3 +1,8 @@
+
+<div>
+  <img src="logo.png" alt="Twindix Logo" width="180" />
+</div>
+
 # Twindix Admin Panel Monorepo
 
 ## Quick Start
