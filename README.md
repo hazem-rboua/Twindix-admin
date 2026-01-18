@@ -61,13 +61,13 @@ All commit messages and branch names should include the relevant Jira ticket ID 
 #### Commit Message Format
 
 ```
-<type>: (TWN-ADM-[Ticket-ID]) <COMMIT MESSAGE>
+<type>: (TWNADM-[Ticket-ID]) <COMMIT MESSAGE>
 ```
 
 **Example:**
 
 ```
-fix: (TWN-ADM-123) correct login validation bug
+fix: (TWNADM-123) correct login validation bug
 ```
 
 > **Tip:** Keep commit messages concise and descriptive, ideally not exceeding 70 characters.
@@ -75,13 +75,13 @@ fix: (TWN-ADM-123) correct login validation bug
 #### Branch Name Format
 
 ```
-<type>/TWN-ADM-[Ticket-ID]/branch-description
+<type>/TWNADM-[Ticket-ID]/branch-description
 ```
 
 **Example:**
 
 ```
-feat/TWN-ADM-123/User-Profile
+feat/TWNADM-123/User-Profile
 ```
 
 ### Commit Types
@@ -110,9 +110,9 @@ We follow a structured branch flow to ensure stability and smooth delivery:
 
 ### Feature and Other Branch Naming Conventions
 
-- **Feature branches:** `feat/TWN-ADM-[Ticket-ID]/feature-name`
-- **Chore branches:** `chore/TWN-ADM-[Ticket-ID]/branch-name`
-- **Fix branches:** `fix/TWN-ADM-[Ticket-ID]/bug-description`
+- **Feature branches:** `feat/TWNADM-[Ticket-ID]/feature-name`
+- **Chore branches:** `chore/TWNADM-[Ticket-ID]/branch-name`
+- **Fix branches:** `fix/TWNADM-[Ticket-ID]/bug-description`
 
 #### Example Branch Flow
 

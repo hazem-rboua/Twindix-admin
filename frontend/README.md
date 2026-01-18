@@ -3,7 +3,7 @@
 This is the frontend application for the Twindix Admin Panel, built with React, Vite, TypeScript, Tailwind CSS, and Radix UI.
 
 ## Prerequisites
-- Node.js v22.14.0 (see `.nvmrc`)
+- Node.js v24.12.0 (see `.nvmrc`)
 - pnpm (recommended)
 
 ## Getting Started
@@ -51,7 +51,7 @@ This is the frontend application for the Twindix Admin Panel, built with React, 
 - `eslint.config.mjs` — ESLint configuration
 
 ## Node Version
-- The required Node.js version is specified in `.nvmrc` and `package.json` (`22.14.0`).
+- The required Node.js version is specified in `.nvmrc` and `package.json` (`24.12.0`).
 
 ---
 
