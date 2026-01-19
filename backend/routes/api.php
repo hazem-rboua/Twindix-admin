@@ -33,4 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/groups', [PermissionController::class, 'groups']);
         Route::put('/assign', [PermissionController::class, 'assign']);
     });
+
+    // Regions
+    Route::apiResource('regions', \App\Http\Controllers\Api\RegionController::class);
+    Route::get('countries', [\App\Http\Controllers\Api\RegionController::class, 'countries']);
 });
