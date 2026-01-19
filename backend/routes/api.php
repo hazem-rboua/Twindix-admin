@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\PermissionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,5 +22,15 @@ Route::prefix('auth')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
         Route::get('me', [AuthController::class, 'me']);
+    });
+});
+
+// Protected routes
+Route::middleware('auth:sanctum')->group(function () {
+    // Permissions
+    Route::prefix('permissions')->group(function () {
+        Route::get('/', [PermissionController::class, 'index']);
+        Route::get('/groups', [PermissionController::class, 'groups']);
+        Route::put('/assign', [PermissionController::class, 'assign']);
     });
 });
