@@ -37,4 +37,16 @@ Route::middleware('auth:sanctum')->group(function () {
     // Regions
     Route::apiResource('regions', \App\Http\Controllers\Api\RegionController::class);
     Route::get('countries', [\App\Http\Controllers\Api\RegionController::class, 'countries']);
+
+    // User Types
+    Route::apiResource('user-types', \App\Http\Controllers\Api\UserTypeController::class);
+    Route::post('user-types/{userType}/sub-types', [\App\Http\Controllers\Api\UserTypeController::class, 'storeSubType']);
+    Route::put('user-sub-types/{userSubType}', [\App\Http\Controllers\Api\UserTypeController::class, 'updateSubType']);
+    Route::delete('user-sub-types/{userSubType}', [\App\Http\Controllers\Api\UserTypeController::class, 'destroySubType']);
+
+    // Super Admins & Admins
+    Route::apiResource('super-admins', \App\Http\Controllers\Api\UserAdminController::class);
+    Route::post('super-admins/{user}/pause', [\App\Http\Controllers\Api\UserAdminController::class, 'pause']);
+    Route::post('super-admins/{user}/resume', [\App\Http\Controllers\Api\UserAdminController::class, 'resume']);
+    Route::post('admins', [\App\Http\Controllers\Api\UserAdminController::class, 'storeAdmin']);
 });
