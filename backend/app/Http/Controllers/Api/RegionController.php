@@ -20,7 +20,16 @@ class RegionController extends Controller
         $this->middleware('auth:sanctum');
     }
 
-    #[OA\Get(path: '/api/regions', summary: 'List all regions', security: [['bearerAuth' => []]], tags: ['Regions'])]
+    #[OA\Get(
+        path: '/api/regions',
+        summary: 'List all regions',
+        security: [['bearerAuth' => []]],
+        tags: ['Regions'],
+        responses: [
+            new OA\Response(response: 200, description: 'Success'),
+            new OA\Response(response: 401, description: 'Unauthenticated')
+        ]
+    )]
     public function index()
     {
         $this->authorize('regions.read');
@@ -29,7 +38,16 @@ class RegionController extends Controller
         return response()->json(['success' => true, 'data' => $regions]);
     }
 
-    #[OA\Post(path: '/api/regions', summary: 'Create new region', security: [['bearerAuth' => []]], tags: ['Regions'])]
+    #[OA\Post(
+        path: '/api/regions',
+        summary: 'Create new region',
+        security: [['bearerAuth' => []]],
+        tags: ['Regions'],
+        responses: [
+            new OA\Response(response: 201, description: 'Created'),
+            new OA\Response(response: 422, description: 'Validation error')
+        ]
+    )]
     public function store(StoreRegionRequest $request)
     {
         $region = $this->regionService->createRegion(
@@ -40,7 +58,16 @@ class RegionController extends Controller
         return response()->json(['success' => true, 'data' => $region, 'message' => 'Region created successfully'], 201);
     }
 
-    #[OA\Get(path: '/api/regions/{id}', summary: 'Get single region', security: [['bearerAuth' => []]], tags: ['Regions'])]
+    #[OA\Get(
+        path: '/api/regions/{id}',
+        summary: 'Get single region',
+        security: [['bearerAuth' => []]],
+        tags: ['Regions'],
+        responses: [
+            new OA\Response(response: 200, description: 'Success'),
+            new OA\Response(response: 404, description: 'Not found')
+        ]
+    )]
     public function show(string $id)
     {
         $this->authorize('regions.read');
@@ -49,7 +76,16 @@ class RegionController extends Controller
         return response()->json(['success' => true, 'data' => $region]);
     }
 
-    #[OA\Put(path: '/api/regions/{id}', summary: 'Update region', security: [['bearerAuth' => []]], tags: ['Regions'])]
+    #[OA\Put(
+        path: '/api/regions/{id}',
+        summary: 'Update region',
+        security: [['bearerAuth' => []]],
+        tags: ['Regions'],
+        responses: [
+            new OA\Response(response: 200, description: 'Success'),
+            new OA\Response(response: 422, description: 'Validation error')
+        ]
+    )]
     public function update(UpdateRegionRequest $request, Region $region)
     {
         $region = $this->regionService->updateRegion(
@@ -61,7 +97,16 @@ class RegionController extends Controller
         return response()->json(['success' => true, 'data' => $region, 'message' => 'Region updated successfully']);
     }
 
-    #[OA\Delete(path: '/api/regions/{id}', summary: 'Delete region', security: [['bearerAuth' => []]], tags: ['Regions'])]
+    #[OA\Delete(
+        path: '/api/regions/{id}',
+        summary: 'Delete region',
+        security: [['bearerAuth' => []]],
+        tags: ['Regions'],
+        responses: [
+            new OA\Response(response: 200, description: 'Success'),
+            new OA\Response(response: 403, description: 'Forbidden')
+        ]
+    )]
     public function destroy(Region $region)
     {
         $this->authorize('regions.delete', $region);
@@ -70,7 +115,15 @@ class RegionController extends Controller
         return response()->json(['success' => true, 'message' => 'Region deleted successfully']);
     }
 
-    #[OA\Get(path: '/api/countries', summary: 'List all countries', security: [['bearerAuth' => []]], tags: ['Regions'])]
+    #[OA\Get(
+        path: '/api/countries',
+        summary: 'List all countries',
+        security: [['bearerAuth' => []]],
+        tags: ['Regions'],
+        responses: [
+            new OA\Response(response: 200, description: 'Success')
+        ]
+    )]
     public function countries()
     {
         $countries = Country::orderBy('name')->get();

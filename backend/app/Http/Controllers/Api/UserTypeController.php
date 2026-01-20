@@ -15,7 +15,13 @@ class UserTypeController extends Controller
         $this->middleware('auth:sanctum');
     }
 
-    #[OA\Get(path: '/api/user-types', summary: 'List types with subtypes', security: [['bearerAuth' => []]], tags: ['Types'])]
+    #[OA\Get(
+        path: '/api/user-types',
+        summary: 'List types with subtypes',
+        security: [['bearerAuth' => []]],
+        tags: ['Types'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function index()
     {
         $this->authorize('types.read');
@@ -23,7 +29,13 @@ class UserTypeController extends Controller
         return response()->json(['success' => true, 'data' => $types]);
     }
 
-    #[OA\Post(path: '/api/user-types', summary: 'Create type', security: [['bearerAuth' => []]], tags: ['Types'])]
+    #[OA\Post(
+        path: '/api/user-types',
+        summary: 'Create type',
+        security: [['bearerAuth' => []]],
+        tags: ['Types'],
+        responses: [new OA\Response(response: 201, description: 'Created')]
+    )]
     public function store(Request $request)
     {
         $this->authorize('types.create');
@@ -35,7 +47,13 @@ class UserTypeController extends Controller
         return response()->json(['success' => true, 'data' => $type], 201);
     }
 
-    #[OA\Put(path: '/api/user-types/{id}', summary: 'Update type', security: [['bearerAuth' => []]], tags: ['Types'])]
+    #[OA\Put(
+        path: '/api/user-types/{id}',
+        summary: 'Update type',
+        security: [['bearerAuth' => []]],
+        tags: ['Types'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function update(Request $request, UserType $userType)
     {
         $this->authorize('types.update');
@@ -45,7 +63,13 @@ class UserTypeController extends Controller
         return response()->json(['success' => true, 'data' => $userType]);
     }
 
-    #[OA\Delete(path: '/api/user-types/{id}', summary: 'Delete type', security: [['bearerAuth' => []]], tags: ['Types'])]
+    #[OA\Delete(
+        path: '/api/user-types/{id}',
+        summary: 'Delete type',
+        security: [['bearerAuth' => []]],
+        tags: ['Types'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function destroy(UserType $userType)
     {
         $this->authorize('types.delete');
@@ -53,7 +77,13 @@ class UserTypeController extends Controller
         return response()->json(['success' => true, 'message' => 'Type deleted']);
     }
 
-    #[OA\Post(path: '/api/user-types/{id}/sub-types', summary: 'Create subtype', security: [['bearerAuth' => []]], tags: ['Types'])]
+    #[OA\Post(
+        path: '/api/user-types/{id}/sub-types',
+        summary: 'Create subtype',
+        security: [['bearerAuth' => []]],
+        tags: ['Types'],
+        responses: [new OA\Response(response: 201, description: 'Created')]
+    )]
     public function storeSubType(Request $request, UserType $userType)
     {
         $this->authorize('types.create');
@@ -65,7 +95,13 @@ class UserTypeController extends Controller
         return response()->json(['success' => true, 'data' => $subType], 201);
     }
 
-    #[OA\Put(path: '/api/user-sub-types/{id}', summary: 'Update subtype', security: [['bearerAuth' => []]], tags: ['Types'])]
+    #[OA\Put(
+        path: '/api/user-sub-types/{id}',
+        summary: 'Update subtype',
+        security: [['bearerAuth' => []]],
+        tags: ['Types'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function updateSubType(Request $request, UserSubType $userSubType)
     {
         $this->authorize('types.update');
@@ -75,7 +111,13 @@ class UserTypeController extends Controller
         return response()->json(['success' => true, 'data' => $userSubType]);
     }
 
-    #[OA\Delete(path: '/api/user-sub-types/{id}', summary: 'Delete subtype', security: [['bearerAuth' => []]], tags: ['Types'])]
+    #[OA\Delete(
+        path: '/api/user-sub-types/{id}',
+        summary: 'Delete subtype',
+        security: [['bearerAuth' => []]],
+        tags: ['Types'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function destroySubType(UserSubType $userSubType)
     {
         $this->authorize('types.delete');

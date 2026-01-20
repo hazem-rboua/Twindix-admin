@@ -15,7 +15,13 @@ class UserAdminController extends Controller
         $this->middleware('auth:sanctum');
     }
 
-    #[OA\Get(path: '/api/super-admins', summary: 'List super admins', security: [['bearerAuth' => []]], tags: ['Super Admins'])]
+    #[OA\Get(
+        path: '/api/super-admins',
+        summary: 'List super admins',
+        security: [['bearerAuth' => []]],
+        tags: ['Super Admins'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function index()
     {
         $this->authorize('super-admins.read');
@@ -24,7 +30,13 @@ class UserAdminController extends Controller
         return response()->json(['success' => true, 'data' => $superAdmins]);
     }
 
-    #[OA\Post(path: '/api/super-admins', summary: 'Create super admin', security: [['bearerAuth' => []]], tags: ['Super Admins'])]
+    #[OA\Post(
+        path: '/api/super-admins',
+        summary: 'Create super admin',
+        security: [['bearerAuth' => []]],
+        tags: ['Super Admins'],
+        responses: [new OA\Response(response: 201, description: 'Created')]
+    )]
     public function store(Request $request)
     {
         $this->authorize('super-admins.create');
@@ -48,7 +60,13 @@ class UserAdminController extends Controller
         return response()->json(['success' => true, 'data' => $user], 201);
     }
 
-    #[OA\Get(path: '/api/super-admins/{id}', summary: 'Get super admin', security: [['bearerAuth' => []]], tags: ['Super Admins'])]
+    #[OA\Get(
+        path: '/api/super-admins/{id}',
+        summary: 'Get super admin',
+        security: [['bearerAuth' => []]],
+        tags: ['Super Admins'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function show(User $user)
     {
         $this->authorize('super-admins.read');
@@ -56,7 +74,13 @@ class UserAdminController extends Controller
         return response()->json(['success' => true, 'data' => $user]);
     }
 
-    #[OA\Put(path: '/api/super-admins/{id}', summary: 'Update super admin', security: [['bearerAuth' => []]], tags: ['Super Admins'])]
+    #[OA\Put(
+        path: '/api/super-admins/{id}',
+        summary: 'Update super admin',
+        security: [['bearerAuth' => []]],
+        tags: ['Super Admins'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function update(Request $request, User $user)
     {
         $this->authorize('super-admins.update');
@@ -70,7 +94,13 @@ class UserAdminController extends Controller
         return response()->json(['success' => true, 'data' => $user]);
     }
 
-    #[OA\Delete(path: '/api/super-admins/{id}', summary: 'Delete super admin', security: [['bearerAuth' => []]], tags: ['Super Admins'])]
+    #[OA\Delete(
+        path: '/api/super-admins/{id}',
+        summary: 'Delete super admin',
+        security: [['bearerAuth' => []]],
+        tags: ['Super Admins'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function destroy(User $user)
     {
         $this->authorize('super-admins.delete');
@@ -79,7 +109,13 @@ class UserAdminController extends Controller
         return response()->json(['success' => true, 'message' => 'Super admin deleted']);
     }
 
-    #[OA\Post(path: '/api/super-admins/{id}/pause', summary: 'Pause account', security: [['bearerAuth' => []]], tags: ['Super Admins'])]
+    #[OA\Post(
+        path: '/api/super-admins/{id}/pause',
+        summary: 'Pause account',
+        security: [['bearerAuth' => []]],
+        tags: ['Super Admins'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function pause(User $user)
     {
         $this->authorize('super-admins.pause');
@@ -88,7 +124,13 @@ class UserAdminController extends Controller
         return response()->json(['success' => true, 'message' => 'Account paused']);
     }
 
-    #[OA\Post(path: '/api/super-admins/{id}/resume', summary: 'Resume account', security: [['bearerAuth' => []]], tags: ['Super Admins'])]
+    #[OA\Post(
+        path: '/api/super-admins/{id}/resume',
+        summary: 'Resume account',
+        security: [['bearerAuth' => []]],
+        tags: ['Super Admins'],
+        responses: [new OA\Response(response: 200, description: 'Success')]
+    )]
     public function resume(User $user)
     {
         $this->authorize('super-admins.resume');
@@ -97,7 +139,13 @@ class UserAdminController extends Controller
         return response()->json(['success' => true, 'message' => 'Account resumed']);
     }
 
-    #[OA\Post(path: '/api/admins', summary: 'Create admin under super admin', security: [['bearerAuth' => []]], tags: ['Super Admins'])]
+    #[OA\Post(
+        path: '/api/admins',
+        summary: 'Create admin under super admin',
+        security: [['bearerAuth' => []]],
+        tags: ['Super Admins'],
+        responses: [new OA\Response(response: 201, description: 'Created')]
+    )]
     public function storeAdmin(Request $request)
     {
         $this->authorize('super-admins.create');
