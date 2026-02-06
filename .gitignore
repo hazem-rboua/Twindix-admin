@@ -19,6 +19,31 @@ node_modules/
 vendor/
 
 # =============================================================================
+# LARAVEL SPECIFIC
+# =============================================================================
+backend/.env
+backend/.env.backup
+backend/.env.production
+backend/storage/*.key
+backend/storage/logs/*.log
+backend/storage/framework/cache/**
+backend/storage/framework/sessions/**
+backend/storage/framework/testing/**
+backend/storage/framework/views/**
+backend/bootstrap/cache/*
+backend/public/storage
+backend/public/hot
+backend/.phpunit.result.cache
+backend/Homestead.json
+backend/Homestead.yaml
+backend/npm-debug.log
+backend/yarn-error.log
+backend/.php-cs-fixer.cache
+backend/_ide_helper.php
+backend/_ide_helper_models.php
+backend/.phpstorm.meta.php
+
+# =============================================================================
 # BUILD ARTIFACTS & CACHES
 # =============================================================================
 
@@ -77,6 +102,7 @@ crash.*.log
 # ENVIRONMENT & CONFIGURATION
 # =============================================================================
 .env*
+!**/.env.example
 secrets/
 
 # =============================================================================
