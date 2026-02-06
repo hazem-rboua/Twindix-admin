@@ -61,7 +61,7 @@ frontend/
 │   └── index.css              # Global styles & Tailwind theme
 ├── scripts/                   # Build scripts
 ├── eslint.config.js           # ESLint flat config
-├── vite.config.mts            # Vite configuration with PWA
+├── vite.config.ts             # Vite configuration with PWA
 ├── tsconfig.json              # TypeScript configuration
 ├── package.json               # Dependencies & scripts
 ├── AGENTS.md                  # AI agent instructions (this file)
