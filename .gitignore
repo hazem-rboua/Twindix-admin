@@ -10,6 +10,7 @@
 *.out
 bin/
 build/
+dist/
 
 # =============================================================================
 # DEPENDENCIES
@@ -67,6 +68,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 dev-debug.log
 crash.log
 crash.*.log
@@ -201,14 +203,4 @@ backup/
 # OS-SPECIFIC
 # =============================================================================
 .DS_Store
-*.claude
-
-# =============================================================================
-# AI ASSISTANT FILES (keep locally, not in repo)
-# =============================================================================
-CLAUDE.md
-**/CLAUDE.md
-Claude.md
-**/Claude.md
-AGENTS.md
-**/AGENTS.md
+Thumbs.db

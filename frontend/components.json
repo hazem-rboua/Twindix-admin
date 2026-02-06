@@ -4,18 +4,18 @@
     "rsc": false,
     "tsx": true,
     "tailwind": {
-        "config": "tailwind.config.js",
-        "css": "src/styles/index.css",
+        "config": "",
+        "css": "src/index.css",
         "baseColor": "slate",
         "cssVariables": true
     },
     "iconLibrary": "lucide",
     "aliases": {
+        "atoms": "@/atoms",
         "components": "@/components",
-        "utils": "@/lib/utils",
-        "ui": "@/ui"
-    },
-    "registries": {
-        "@reui": "https://reui.io/r/{name}.json"
+        "hooks": "@/hooks",
+        "layouts": "@/layouts",
+        "ui": "@/ui",
+        "utils": "@/utils"
     }
 }

@@ -54,34 +54,18 @@ For more details on setting up or contributing to each part, please refer to the
 
 We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for all commit messages. This helps automate releases, improve readability, and maintain a clear project history.
 
-### Jira Ticket Integration
-
-All commit messages and branch names should include the relevant Jira ticket ID for traceability. The format is:
-
-#### Commit Message Format
-
-```
-<type>: (TWNADM-[Ticket-ID]) <COMMIT MESSAGE>
-```
-
-**Example:**
-
-```
-fix: (TWNADM-123) correct login validation bug
-```
-
 > **Tip:** Keep commit messages concise and descriptive, ideally not exceeding 70 characters.
 
 #### Branch Name Format
 
 ```
-<type>/TWNADM-[Ticket-ID]/branch-description
+<type>/branch-description
 ```
 
 **Example:**
 
 ```
-feat/TWNADM-123/User-Profile
+feat/User-Profile
 ```
 
 ### Commit Types
@@ -110,9 +94,9 @@ We follow a structured branch flow to ensure stability and smooth delivery:
 
 ### Feature and Other Branch Naming Conventions
 
-- **Feature branches:** `feat/TWNADM-[Ticket-ID]/feature-name`
-- **Chore branches:** `chore/TWNADM-[Ticket-ID]/branch-name`
-- **Fix branches:** `fix/TWNADM-[Ticket-ID]/bug-description`
+- **Feature branches:** `feat/feature-name`
+- **Chore branches:** `chore/branch-name`
+- **Fix branches:** `fix/bug-description`
 
 #### Example Branch Flow
 
@@ -127,3 +111,11 @@ We follow a structured branch flow to ensure stability and smooth delivery:
   - Deploy to production after merge
 
 This ensures that urgent issues are resolved quickly, while regular development follows a stable and testable flow.
+
+---
+
+## License
+
+This project is proprietary software. See the [LICENSE](./LICENSE) file for full details.
+
+Copyright (c) 2025 Twindix Global Inc. All rights reserved.

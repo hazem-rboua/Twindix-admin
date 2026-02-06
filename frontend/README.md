@@ -4,7 +4,7 @@ This is the frontend application for the Twindix Admin Panel, built with React, 
 
 ## Prerequisites
 - Node.js v24.12.0 (see `.nvmrc`)
-- pnpm (recommended)
+- pnpm v10.10.0
 
 ## Getting Started
 
@@ -46,12 +46,41 @@ This is the frontend application for the Twindix Admin Panel, built with React, 
 - See `.env.example` for required variables.
 
 ## Project Structure
-- `src/` — Your React app source code
-- `tsconfig.json` — TypeScript configuration
-- `eslint.config.mjs` — ESLint configuration
+
+```
+src/
+├── api/           # API client functions
+├── atoms/         # Custom UI components (wraps ui/, applies project identity)
+├── components/    # Shared components with logic
+│   └── shared/    # Global UI (Navbar, Sidebar, Footer)
+├── constants/     # App constants
+├── contexts/      # React context providers
+├── enums/         # TypeScript enums
+├── hooks/         # Custom React hooks
+├── interfaces/    # TypeScript interfaces
+├── layouts/       # View layouts (DashboardLayout, AuthLayout)
+├── services/      # Business logic & API services
+├── strings/       # UI text strings
+├── types/         # TypeScript type aliases
+├── ui/            # Radix/shadcn raw components (auto-generated)
+├── utils/         # Utility functions
+└── views/         # Full page UI (*View suffix)
+```
+
+**Component Flow:** `ui/` → `atoms/` → `components/` → `layouts/` → `views/`
+
+For detailed architecture guidelines, see [AGENTS.md](./AGENTS.md).
 
 ## Node Version
 - The required Node.js version is specified in `.nvmrc` and `package.json` (`24.12.0`).
+
+---
+
+## License
+
+This project is proprietary software. See the [LICENSE](./LICENSE) file for full details.
+
+Copyright (c) 2025 Twindix Global Inc. All rights reserved.
 
 ---
 

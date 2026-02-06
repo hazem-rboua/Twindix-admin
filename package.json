@@ -1,8 +1,47 @@
 {
     "name": "twindix-admin",
     "private": true,
+    "description": "Admin panel for the Twindix platform — manage assessments, enrollments, orders, benchmarks, packages, templates, discounts, and access control. Empowering leaders with actionable insights to improve team dynamics, foster transformative leadership, and drive strategic decision-making through innovative assessments and management science.",
+    "author": "Twindix Global Inc.",
+    "license": "PROPRIETARY",
+    "keywords": [
+        "assessment",
+        "ai-analysis",
+        "academic",
+        "career-guidance",
+        "student-assessment",
+        "twindix",
+        "admin",
+        "roles",
+        "permissions",
+        "job-bar",
+        "emails",
+        "invitations",
+        "management",
+        "access-control",
+        "enrollments",
+        "orders",
+        "benchmarks",
+        "packages",
+        "templates",
+        "discounts",
+        "job-title-question",
+        "contact"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hazem-rboua/Twindix-admin.git"
+    },
+    "bugs": {
+        "url": "https://github.com/hazem-rboua/Twindix-admin/issues"
+    },
+    "homepage": "https://admin.twindix.com/",
+    "files": [
+        "LICENSE",
+        "README.md"
+    ],
     "devDependencies": {
-        "husky": "^9.0.0"
+        "husky": "9.1.7"
     },
     "scripts": {
         "postinstall": "husky install"

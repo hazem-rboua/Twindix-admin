@@ -1,20 +1,48 @@
 @import "tailwindcss";
 
-:root {
-    color-scheme: light;
-}
+@theme {
+    --color-primary: #1356BC;
+    --color-primary-dark: #0025BA;
+    --color-primary-light: #4A7FD4;
+    --color-secondary: #0025BA;
+    --color-muted: #7C8FBA;
+    --color-error: #DC2626;
+    --color-error-light: #EF4444;
+    --color-background: #F6F6F6;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #0025BA;
+    --color-text-secondary: #6B7280;
+    --color-text-muted: #9CA3AF;
+    --color-text-dark: #000000;
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+    --radius-default: 14px;
+
+    --font-family-roboto: 'Roboto', sans-serif;
 }
 
 body {
+    font-family: var(--font-family-roboto);
+    background-color: var(--color-background);
     margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", sans-serif;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
     min-height: 100vh;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, var(--color-text-dark), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient-error {
+    background: linear-gradient(to right, var(--color-error), var(--color-text-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
