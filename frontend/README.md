@@ -48,23 +48,53 @@ This is the frontend application for the Twindix Admin Panel, built with React, 
 ## Project Structure
 
 ```
-src/
-├── api/           # API client functions
-├── atoms/         # Custom UI components (wraps ui/, applies project identity)
-├── components/    # Shared components with logic
-│   └── shared/    # Global UI (Navbar, Sidebar, Footer)
-├── constants/     # App constants
-├── contexts/      # React context providers
-├── enums/         # TypeScript enums
-├── hooks/         # Custom React hooks
-├── interfaces/    # TypeScript interfaces
-├── layouts/       # View layouts (DashboardLayout, AuthLayout)
-├── services/      # Business logic & API services
-├── strings/       # UI text strings
-├── types/         # TypeScript type aliases
-├── ui/            # Radix/shadcn raw components (auto-generated)
-├── utils/         # Utility functions
-└── views/         # Full page UI (*View suffix)
+frontend/
+├── public/                    # Static assets
+│   ├── favicon.ico
+│   ├── favicon-32x32.png
+│   ├── apple-touch-icon.png
+│   ├── offline.html           # PWA offline fallback
+│   └── _redirects             # Netlify redirects
+├── src/
+│   ├── api/                   # API client functions
+│   ├── atoms/                 # Custom UI components (wraps ui/, applies project identity)
+│   ├── components/            # Shared components with logic
+│   │   └── shared/            # Global UI (Navbar, Sidebar, Footer)
+│   ├── constants/             # App constants and configuration
+│   ├── contexts/              # React context providers
+│   ├── data/                  # Static data
+│   ├── enums/                 # TypeScript enums
+│   ├── hooks/                 # Custom React hooks
+│   ├── interfaces/            # TypeScript interfaces
+│   ├── layouts/               # View layouts (DashboardLayout, AuthLayout)
+│   ├── services/              # Business logic & API services
+│   ├── types/                 # TypeScript type aliases
+│   ├── ui/                    # Radix/shadcn raw components (auto-generated)
+│   ├── utils/                 # Utility functions
+│   ├── views/                 # Full page UI (*View suffix)
+│   ├── app.tsx                # Root application component
+│   ├── main.tsx               # Application entry point
+│   └── index.css              # Global styles & Tailwind theme
+├── scripts/                   # Build scripts
+│   └── postbuild.mjs          # Post-build processing
+├── .browserslistrc            # Browser support targets
+├── .editorconfig              # Editor configuration
+├── .env.example               # Environment variables template
+├── .nvmrc                     # Node version specification
+├── AGENTS.md                  # AI agent instructions
+├── CHANGELOG.md               # Version history
+├── CLAUDE.md                  # Claude-specific configuration
+├── LICENSE                    # Proprietary license
+├── README.md                  # This file
+├── components.json            # shadcn/ui configuration
+├── eslint.config.js           # ESLint flat config
+├── index.html                 # HTML entry point
+├── package.json               # Dependencies & scripts
+├── pnpm-lock.yaml             # Lock file
+├── postcss.config.mjs         # PostCSS configuration
+├── tsconfig.json              # TypeScript configuration
+├── tsconfig.node.json         # TypeScript config for Node
+└── vite.config.ts             # Vite configuration with PWA
 ```
 
 **Component Flow:** `ui/` → `atoms/` → `components/` → `layouts/` → `views/`
@@ -80,7 +110,7 @@ For detailed architecture guidelines, see [AGENTS.md](./AGENTS.md).
 
 This project is proprietary software. See the [LICENSE](./LICENSE) file for full details.
 
-Copyright (c) 2025 Twindix Global Inc. All rights reserved.
+Copyright (c) 2026 Twindix Global Inc. All rights reserved.
 
 ---
 
