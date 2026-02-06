@@ -118,4 +118,4 @@ This ensures that urgent issues are resolved quickly, while regular development 
 
 This project is proprietary software. See the [LICENSE](./LICENSE) file for full details.
 
-Copyright (c) 2025 Twindix Global Inc. All rights reserved.
+Copyright (c) 2026 Twindix Global Inc. All rights reserved.
