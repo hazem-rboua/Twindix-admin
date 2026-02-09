@@ -41,8 +41,7 @@ frontend/
 ├── src/
 │   ├── api/                   # API client functions
 │   ├── atoms/                 # Custom UI components (project identity, wraps ui/)
-│   ├── components/            # Shared components with logic
-│   │   └── shared/            # Global shared components (Navbar, Sidebar, etc.)
+│   ├── components/            # Shared components with logic (shared/ subfolder for global UI)
 │   ├── constants/             # App constants and configuration
 │   ├── contexts/              # React context providers
 │   ├── data/                  # Static data
@@ -50,6 +49,7 @@ frontend/
 │   ├── hooks/                 # Custom React hooks
 │   ├── interfaces/            # TypeScript interfaces
 │   ├── layouts/               # View layouts (DashboardLayout, AuthLayout, etc.)
+│   ├── routes/                # Route configuration (createBrowserRouter)
 │   ├── services/              # Business logic & API services
 │   ├── strings/               # UI text strings (for i18n)
 │   ├── types/                 # TypeScript type aliases
@@ -234,14 +234,14 @@ import { Select } from "@/atoms";
 
 ### eslint-plugin-code-style
 
-**77 custom rules** (67 auto-fixable 🔧, 17 configurable ⚙️, 10 report-only) for consistent React/TypeScript formatting.
+**79 custom rules** (70 auto-fixable 🔧, 19 configurable ⚙️, 9 report-only) for consistent React/TypeScript formatting.
 
 | Resource | Link |
 |----------|------|
 | **Full Documentation** | https://github.com/Mohamed-Elhawary/eslint-plugin-code-style |
 | **NPM Package** | https://www.npmjs.com/package/eslint-plugin-code-style |
 | **Local Config** | `eslint.config.js` |
-| **Current Version** | `1.15.0` (check `package.json`) |
+| **Current Version** | `1.17.0` (check `package.json`) |
 
 > **Read the full documentation before implementing any code.** The table below is a quick reference.
 
@@ -276,8 +276,10 @@ import { Select } from "@/atoms";
 |------|-------------|
 | `component-props-destructure` 🔧 | Props must be destructured `({ prop })` not `(props)` |
 | `component-props-inline-type` 🔧 | Inline type annotation with proper spacing |
-| `folder-component-suffix` | `views/` → `*View` suffix |
-| `svg-component-icon-naming` | SVG components must end with `Icon` suffix |
+| `folder-based-naming-convention` 🔧 | Suffix by folder: `views/`→`*View`, `layouts/`→`*Layout`, `constants/`→`*Constants`, `data/`→`*Data`, `strings/`→`*Strings`, `services/`→`*Service`; chained folder names for nested files |
+| `folder-structure-consistency` ⚙️ | Enforce flat vs wrapped folder consistency in module folders; no unnecessary wrappers |
+| `no-redundant-folder-suffix` | Disallow file and folder names that repeat the parent folder suffix |
+| `svg-icon-naming-convention` | SVG components must end with `Icon` suffix |
 
 ### Function Rules
 | Rule | Description |
@@ -298,10 +300,11 @@ import { Select } from "@/atoms";
 ### Import/Export Rules
 | Rule | Description |
 |------|-------------|
-| `absolute-imports-only` ⚙️ | Use `@/` alias, no relative imports |
+| `absolute-imports-only` 🔧 ⚙️ | Use `@/` alias from index files; relative imports within same module folder to avoid circular deps |
 | `import-format` 🔧 ⚙️ | ≤3 specifiers inline; >3 each on own line |
 | `export-format` 🔧 ⚙️ | ≤3 specifiers inline; >3 each on own line |
 | `index-exports-only` | Index files: re-exports only, no code definitions |
+| `inline-export-declaration` 🔧 ⚙️ | Use `export const x = ...` not grouped `export { x }` in non-index files |
 
 ### JSX Rules
 | Rule | Description |

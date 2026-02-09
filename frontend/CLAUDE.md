@@ -18,9 +18,9 @@ For full instructions, see [AGENTS.md](./AGENTS.md).
 
 | Resource | Link |
 |----------|------|
-| **eslint-plugin-code-style (77 rules)** | https://github.com/Mohamed-Elhawary/eslint-plugin-code-style |
+| **eslint-plugin-code-style (79 rules)** | https://github.com/Mohamed-Elhawary/eslint-plugin-code-style |
 | **Local Config** | `eslint.config.js` |
-| **Current Version** | `1.15.0` (check `package.json`) |
+| **Current Version** | `1.17.0` (check `package.json`) |
 
 **Always run `pnpm lint:fix` after making changes.**
 
@@ -42,10 +42,13 @@ For full instructions, see [AGENTS.md](./AGENTS.md).
 | | `interface-format` 🔧 | `*Interface` suffix |
 | | `type-format` 🔧 | `*Type` suffix |
 | | `enum-format` 🔧 | `*Enum` suffix, UPPER_SNAKE_CASE members |
-| | `folder-component-suffix` | `views/` → `*View` suffix |
-| | `svg-component-icon-naming` | SVG → `*Icon` suffix |
-| **Imports** | `absolute-imports-only` ⚙️ | Use `@/`, no relative imports |
+| | `folder-based-naming-convention` 🔧 | Suffix by folder: `views/`→`*View`, `layouts/`→`*Layout`, `constants/`→`*Constants`, `data/`→`*Data`, `strings/`→`*Strings`, `services/`→`*Service`; chained names for nested files |
+| | `svg-icon-naming-convention` | SVG → `*Icon` suffix |
+| **Imports** | `absolute-imports-only` 🔧 ⚙️ | Use `@/` from index files; relative imports within same module folder |
 | | `import-format` 🔧 | ≤3 inline, >3 multiline |
+| | `inline-export-declaration` 🔧 ⚙️ | Use `export const x = ...` not grouped `export { x }` in non-index files |
+| **Structure** | `folder-structure-consistency` ⚙️ | Flat vs wrapped must be consistent; no unnecessary wrapper folders |
+| | `no-redundant-folder-suffix` | File/folder names must not repeat parent folder suffix |
 | **Components** | `component-props-destructure` 🔧 | `({ prop })` not `(props)` |
 | | `component-props-inline-type` 🔧 | Inline type annotations |
 | **Hooks** | `hook-callback-format` 🔧 | Callback + deps on separate lines |

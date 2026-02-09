@@ -1,0 +1,15 @@
+export const viewsConstants = {
+    accessControl: "Access Control",
+    assessment: "Assessment",
+    benchmarks: "Benchmarks",
+    contact: "Contact",
+    discounts: "Discounts",
+    forgetPassword: "Forget Password",
+    home: "Home",
+    jobTitleQuestion: "Job Title Question",
+    login: "Login",
+    manageEnrollments: "Manage Enrollments",
+    orders: "Orders",
+    packages: "Packages",
+    templates: "Templates",
+};

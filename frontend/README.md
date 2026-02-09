@@ -58,8 +58,7 @@ frontend/
 ├── src/
 │   ├── api/                   # API client functions
 │   ├── atoms/                 # Custom UI components (wraps ui/, applies project identity)
-│   ├── components/            # Shared components with logic
-│   │   └── shared/            # Global UI (Navbar, Sidebar, Footer)
+│   ├── components/            # Shared components with logic (shared/ subfolder for global UI)
 │   ├── constants/             # App constants and configuration
 │   ├── contexts/              # React context providers
 │   ├── data/                  # Static data
@@ -67,6 +66,7 @@ frontend/
 │   ├── hooks/                 # Custom React hooks
 │   ├── interfaces/            # TypeScript interfaces
 │   ├── layouts/               # View layouts (DashboardLayout, AuthLayout)
+│   ├── routes/                # Route configuration (createBrowserRouter)
 │   ├── services/              # Business logic & API services
 │   ├── types/                 # TypeScript type aliases
 │   ├── ui/                    # Radix/shadcn raw components (auto-generated)

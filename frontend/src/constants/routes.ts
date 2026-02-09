@@ -1,0 +1,15 @@
+export const routesConstants = {
+    accessControl: "/access-control",
+    assessment: "/assessment",
+    benchmarks: "/benchmarks",
+    contact: "/contact",
+    discounts: "/discounts",
+    forgetPassword: "/forget-password",
+    home: "/",
+    jobTitleQuestion: "/job-title-question",
+    login: "/login",
+    manageEnrollments: "/manage-enrollments",
+    orders: "/orders",
+    packages: "/packages",
+    templates: "/templates",
+};
