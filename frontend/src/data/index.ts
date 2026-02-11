@@ -1,1 +1,1 @@
-export {};
+export { navigationData } from "./navigation";

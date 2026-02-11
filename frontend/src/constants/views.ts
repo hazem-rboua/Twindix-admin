@@ -11,5 +11,6 @@ export const viewsConstants = {
     manageEnrollments: "Manage Enrollments",
     orders: "Orders",
     packages: "Packages",
+    superAdmin: "Super Admin",
     templates: "Templates",
 };
