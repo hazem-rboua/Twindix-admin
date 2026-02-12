@@ -34,7 +34,7 @@ export const Input = ({
     variant?: InputVariantEnum,
 }) => (
     <div
-        className={cn(
+        className={generateClassNameHandler(
             "flex flex-col gap-1.5",
             className,
         )}
@@ -59,7 +59,7 @@ export const Input = ({
                 placeholder={placeholder}
                 type={type}
                 value={value}
-                className={cn(
+                className={generateClassNameHandler(
                     `
                     rounded-default
                     border-muted

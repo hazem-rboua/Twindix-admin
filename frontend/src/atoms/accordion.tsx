@@ -18,7 +18,7 @@ export const Accordion = ({
     type?: AccordionTypeEnum,
 }) => (
     <UiAccordion
-        className={cn(className)}
+        className={generateClassNameHandler(className)}
         collapsible={type === AccordionTypeEnum.SINGLE}
         type={type}
     >

@@ -13,7 +13,7 @@ export const ScrollArea = ({
     maxHeight?: string,
 }) => (
     <UiScrollArea
-        className={cn(className)}
+        className={generateClassNameHandler(className)}
         style={maxHeight ? { maxHeight } : undefined}
     >
         {children}

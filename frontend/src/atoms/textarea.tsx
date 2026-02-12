@@ -27,7 +27,7 @@ export const Textarea = ({
     value?: string,
 }) => (
     <div
-        className={cn(
+        className={generateClassNameHandler(
             "flex flex-col gap-1.5",
             className,
         )}
@@ -39,7 +39,7 @@ export const Textarea = ({
             placeholder={placeholder}
             rows={rows}
             value={value}
-            className={cn(
+            className={generateClassNameHandler(
                 `
                 rounded-default
                 border-muted

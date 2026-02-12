@@ -24,7 +24,7 @@ export const Checkbox = ({
             <button
                 disabled={isDisabled}
                 type={ButtonTypeEnum.BUTTON}
-                className={cn(
+                className={generateClassNameHandler(
                     `
                     rounded-default
                     border
@@ -47,7 +47,7 @@ export const Checkbox = ({
 
     return (
         <div
-            className={cn(
+            className={generateClassNameHandler(
                 "flex items-center gap-2",
                 className,
             )}

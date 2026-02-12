@@ -18,7 +18,7 @@ export const AccordionItem = React.forwardRef<
 ) => (
     <AccordionPrimitive.Item
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             "border-b",
             className,
         )}
@@ -42,7 +42,7 @@ export const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Header className="flex">
         <AccordionPrimitive.Trigger
             ref={ref}
-            className={cn(
+            className={generateClassNameHandler(
                 `
                 flex
                 flex-1
@@ -97,7 +97,7 @@ export const AccordionContent = React.forwardRef<
         {...props}
     >
         <div
-            className={cn(
+            className={generateClassNameHandler(
                 "pb-4 pt-0",
                 className,
             )}

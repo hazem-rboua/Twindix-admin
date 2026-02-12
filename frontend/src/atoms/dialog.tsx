@@ -31,7 +31,7 @@ export const Dialog = ({
         onOpenChange={onOpenChange}
     >
         <DialogContent
-            className={cn(
+            className={generateClassNameHandler(
                 "rounded-default",
                 className,
             )}

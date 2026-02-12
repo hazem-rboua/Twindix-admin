@@ -22,7 +22,7 @@ export const Avatar = ({
     src?: string,
 }) => (
     <UiAvatar
-        className={cn(
+        className={generateClassNameHandler(
             sizeMap[size],
             className,
         )}

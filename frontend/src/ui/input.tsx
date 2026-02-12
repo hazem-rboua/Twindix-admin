@@ -14,7 +14,7 @@ export const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"in
         <input
             ref={ref}
             type={type}
-            className={cn(
+            className={generateClassNameHandler(
                 `
                 flex
                 h-10

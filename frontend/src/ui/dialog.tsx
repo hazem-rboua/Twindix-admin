@@ -27,7 +27,7 @@ export const DialogOverlay = React.forwardRef<
 ) => (
     <DialogPrimitive.Overlay
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             fixed
             inset-0
@@ -61,7 +61,7 @@ export const DialogContent = React.forwardRef<
         <DialogOverlay />
         <DialogPrimitive.Content
             ref={ref}
-            className={cn(
+            className={generateClassNameHandler(
                 `
                 fixed
                 left-1/2
@@ -128,7 +128,7 @@ export const DialogHeader = ({
     ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
     <div
-        className={cn(
+        className={generateClassNameHandler(
             `
             flex
             flex-col
@@ -149,7 +149,7 @@ export const DialogFooter = ({
     ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
     <div
-        className={cn(
+        className={generateClassNameHandler(
             `
             flex
             flex-col-reverse
@@ -177,7 +177,7 @@ export const DialogTitle = React.forwardRef<
 ) => (
     <DialogPrimitive.Title
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             text-lg
             font-semibold
@@ -204,7 +204,7 @@ export const DialogDescription = React.forwardRef<
 ) => (
     <DialogPrimitive.Description
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             "text-sm text-muted-foreground",
             className,
         )}

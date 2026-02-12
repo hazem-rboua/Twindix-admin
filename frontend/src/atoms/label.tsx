@@ -16,7 +16,7 @@ export const Label = ({
 }) => (
     <UiLabel
         htmlFor={htmlFor}
-        className={cn(
+        className={generateClassNameHandler(
             "text-sm font-medium text-text-primary",
             className,
         )}

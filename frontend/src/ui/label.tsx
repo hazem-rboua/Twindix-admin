@@ -24,7 +24,7 @@ export const Label = React.forwardRef<
 ) => (
     <LabelPrimitive.Root
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             labelVariants(),
             className,
         )}

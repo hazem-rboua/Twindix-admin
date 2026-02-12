@@ -74,7 +74,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonPropsType>(
         return (
             <Comp
                 ref={ref}
-                className={cn(
+                className={generateClassNameHandler(
                     buttonVariants({
                         className,
                         size,

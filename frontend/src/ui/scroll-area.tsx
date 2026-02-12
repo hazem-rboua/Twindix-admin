@@ -17,7 +17,7 @@ export const ScrollArea = React.forwardRef<
 ) => (
     <ScrollAreaPrimitive.Root
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             "relative overflow-hidden",
             className,
         )}
@@ -45,7 +45,7 @@ export const ScrollBar = React.forwardRef<
     <ScrollAreaPrimitive.ScrollAreaScrollbar
         orientation={orientation}
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             flex
             touch-none

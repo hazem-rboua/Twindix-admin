@@ -114,7 +114,7 @@ export const SidebarShared = () => {
                                                         <Link
                                                             key={path}
                                                             to={path}
-                                                            className={cn(
+                                                            className={generateClassNameHandler(
                                                                 `
                                                                 flex
                                                                 items-center
@@ -147,7 +147,7 @@ export const SidebarShared = () => {
                         <Link
                             key={path}
                             to={path}
-                            className={cn(
+                            className={generateClassNameHandler(
                                 `
                                 flex
                                 items-center

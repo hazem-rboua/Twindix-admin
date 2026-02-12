@@ -60,7 +60,7 @@ export const Button = ({
     <UiButton
         disabled={isDisabled || isLoading}
         type={type}
-        className={cn(
+        className={generateClassNameHandler(
             "rounded-default font-medium transition-colors",
             variantMap[variant],
             sizeMap[size],

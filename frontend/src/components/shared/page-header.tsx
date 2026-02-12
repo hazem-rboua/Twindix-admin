@@ -25,7 +25,7 @@ export const PageHeaderShared = ({
     title: string,
 }) => (
     <div
-        className={cn(
+        className={generateClassNameHandler(
             `
             flex
             items-center

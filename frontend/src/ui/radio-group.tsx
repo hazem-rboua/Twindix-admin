@@ -17,7 +17,7 @@ export const RadioGroup = React.forwardRef<
     ref,
 ) => (
     <RadioGroupPrimitive.Root
-        className={cn(
+        className={generateClassNameHandler(
             "grid gap-2",
             className,
         )}
@@ -40,7 +40,7 @@ export const RadioGroupItem = React.forwardRef<
 ) => (
     <RadioGroupPrimitive.Item
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             aspect-square
             h-4

@@ -17,7 +17,7 @@ export const Avatar = React.forwardRef<
 ) => (
     <AvatarPrimitive.Root
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             relative
             flex
@@ -47,7 +47,7 @@ export const AvatarImage = React.forwardRef<
 ) => (
     <AvatarPrimitive.Image
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             "aspect-square h-full w-full",
             className,
         )}
@@ -69,7 +69,7 @@ export const AvatarFallback = React.forwardRef<
 ) => (
     <AvatarPrimitive.Fallback
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             flex
             h-full

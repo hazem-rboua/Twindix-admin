@@ -24,7 +24,7 @@ export const SelectTrigger = React.forwardRef<
 ) => (
     <SelectPrimitive.Trigger
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             flex
             h-10
@@ -73,7 +73,7 @@ export const SelectScrollUpButton = React.forwardRef<
 ) => (
     <SelectPrimitive.ScrollUpButton
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             flex
             cursor-default
@@ -103,7 +103,7 @@ export const SelectScrollDownButton = React.forwardRef<
 ) => (
     <SelectPrimitive.ScrollDownButton
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             flex
             cursor-default
@@ -138,7 +138,7 @@ export const SelectContent = React.forwardRef<
         <SelectPrimitive.Content
             position={position}
             ref={ref}
-            className={cn(
+            className={generateClassNameHandler(
                 `
                 relative
                 z-50
@@ -170,7 +170,7 @@ export const SelectContent = React.forwardRef<
         >
             <SelectScrollUpButton />
             <SelectPrimitive.Viewport
-                className={cn(
+                className={generateClassNameHandler(
                     "p-1",
                     position === "popper" && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]",
                 )}
@@ -196,7 +196,7 @@ export const SelectLabel = React.forwardRef<
 ) => (
     <SelectPrimitive.Label
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             py-1.5
             pl-8
@@ -225,7 +225,7 @@ export const SelectItem = React.forwardRef<
 ) => (
     <SelectPrimitive.Item
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             relative
             flex
@@ -281,7 +281,7 @@ export const SelectSeparator = React.forwardRef<
 ) => (
     <SelectPrimitive.Separator
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             -mx-1
             my-1

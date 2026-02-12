@@ -14,7 +14,7 @@ export const Textarea = React.forwardRef<
 ) => (
     <textarea
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             flex
             min-h-20

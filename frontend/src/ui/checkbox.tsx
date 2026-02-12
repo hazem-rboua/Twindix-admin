@@ -16,7 +16,7 @@ export const Checkbox = React.forwardRef<
 ) => (
     <CheckboxPrimitive.Root
         ref={ref}
-        className={cn(
+        className={generateClassNameHandler(
             `
             peer
             size-4
@@ -39,7 +39,7 @@ export const Checkbox = React.forwardRef<
         {...props}
     >
         <CheckboxPrimitive.Indicator
-            className={cn(`
+            className={generateClassNameHandler(`
                 flex
                 items-center
                 justify-center

@@ -11,7 +11,7 @@ export const Separator = ({
 }) => (
     <UiSeparator
         orientation={orientation}
-        className={cn(
+        className={generateClassNameHandler(
             "bg-muted",
             className,
         )}

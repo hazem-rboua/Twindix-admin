@@ -30,7 +30,7 @@ export const Select = ({
     value?: string,
 }) => (
     <div
-        className={cn(
+        className={generateClassNameHandler(
             "flex flex-col gap-1.5",
             className,
         )}
