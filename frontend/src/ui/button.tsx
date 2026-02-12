@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { HtmlElementEnum } from "@/enums";
 import type { ButtonPropsType } from "@/types";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 export const buttonVariants = cva(
     `

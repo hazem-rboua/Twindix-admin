@@ -2,7 +2,7 @@ import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 import * as React from "react";
 
 import { OrientationEnum } from "@/enums";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 export const ScrollArea = React.forwardRef<
     React.ComponentRef<typeof ScrollAreaPrimitive.Root>,

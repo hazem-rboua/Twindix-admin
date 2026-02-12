@@ -1,5 +1,5 @@
 import { RadioGroup as UiRadioGroup, RadioGroupItem } from "@/ui";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 import { Label } from "./label";
 

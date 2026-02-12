@@ -1,6 +1,6 @@
 import { AvatarSizeEnum } from "@/enums";
 import { Avatar as UiAvatar, AvatarFallback, AvatarImage } from "@/ui";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 const sizeMap: Record<AvatarSizeEnum, string> = {
     [AvatarSizeEnum.LG]: "size-14",

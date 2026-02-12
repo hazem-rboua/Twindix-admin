@@ -1,6 +1,6 @@
 import { OrientationEnum } from "@/enums";
 import { Separator as UiSeparator } from "@/ui";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 export const Separator = ({
     className,

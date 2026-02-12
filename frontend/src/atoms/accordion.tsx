@@ -6,7 +6,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/ui";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 export const Accordion = ({
     className,

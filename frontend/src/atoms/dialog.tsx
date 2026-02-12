@@ -7,7 +7,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/ui";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 export { DialogTrigger } from "@/ui";
 

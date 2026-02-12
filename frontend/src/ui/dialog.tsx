@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 import * as React from "react";
 
 import { uiConstants } from "@/constants";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 export const Dialog = DialogPrimitive.Root;
 

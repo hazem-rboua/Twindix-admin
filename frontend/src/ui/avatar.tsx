@@ -3,7 +3,7 @@
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import * as React from "react";
 
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 export const Avatar = React.forwardRef<
     React.ComponentRef<typeof AvatarPrimitive.Root>,

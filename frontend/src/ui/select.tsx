@@ -3,7 +3,7 @@ import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import * as React from "react";
 
 import { SelectPositionEnum } from "@/enums";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 export const Select = SelectPrimitive.Root;
 

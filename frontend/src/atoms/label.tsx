@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { Label as UiLabel } from "@/ui";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 export const Label = ({
     children,

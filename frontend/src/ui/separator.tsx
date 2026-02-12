@@ -4,7 +4,7 @@ import * as SeparatorPrimitive from "@radix-ui/react-separator";
 import * as React from "react";
 
 import { OrientationEnum } from "@/enums";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 export const Separator = React.forwardRef<
     React.ComponentRef<typeof SeparatorPrimitive.Root>,

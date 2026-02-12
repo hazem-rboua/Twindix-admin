@@ -5,7 +5,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/ui";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 import { Label } from "./label";
 

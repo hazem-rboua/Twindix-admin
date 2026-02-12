@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 
 import { InputTypeEnum, InputVariantEnum } from "@/enums";
 import { Input as UiInput } from "@/ui";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 import { Label } from "./label";
 

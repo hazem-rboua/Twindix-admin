@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { ButtonSizeEnum, ButtonTypeEnum, ButtonVariantEnum } from "@/enums";
 import { Button as UiButton } from "@/ui";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 const variantMap: Record<ButtonVariantEnum, string> = {
     [ButtonVariantEnum.DANGER]: "text-white bg-error hover:bg-error-light",

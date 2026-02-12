@@ -12,7 +12,7 @@ import { commonConstants, layoutsConstants } from "@/constants";
 import { navigationData } from "@/data";
 import { AvatarSizeEnum, ButtonSizeEnum, ButtonVariantEnum } from "@/enums";
 import type { LucideIconNameType } from "@/types";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 const renderIconHandler = (iconName: string) => {
     const IconComponent = LucideIcons[iconName as LucideIconNameType] as ComponentType<{ className?: string }>;

@@ -1,6 +1,6 @@
 import { ButtonTypeEnum, CheckboxVariantEnum } from "@/enums";
 import { Checkbox as UiCheckbox } from "@/ui";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
 import { Label } from "./label";
 
