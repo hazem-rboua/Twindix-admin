@@ -1,1 +1,1 @@
-export { cn } from "./cn";
+export { generateClassNameHandler } from "./helpers";
