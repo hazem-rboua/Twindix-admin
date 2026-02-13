@@ -4,6 +4,8 @@
     --color-primary: #1356BC;
     --color-primary-dark: #0025BA;
     --color-primary-light: #4A7FD4;
+    --color-primary-lighter: #A8C4F5;
+    --color-primary-medium: #2557B8;
     --color-secondary: #0025BA;
     --color-muted: #7C8FBA;
     --color-error: #DC2626;
@@ -64,6 +66,18 @@ body {
 
 #root {
     min-height: 100vh;
+}
+
+.bg-gradient-auth {
+    background: linear-gradient(
+        to top,
+        var(--color-primary-dark) 0%,
+        var(--color-primary-dark) 15%,
+        var(--color-primary-medium) 35%,
+        var(--color-primary-light) 55%,
+        var(--color-primary-lighter) 75%,
+        var(--color-surface) 100%
+    );
 }
 
 .text-gradient {

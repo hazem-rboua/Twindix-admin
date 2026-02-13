@@ -1,5 +1,6 @@
 export {
     AccordionTypeEnum,
+    AlertVariantEnum,
     AvatarSizeEnum,
     ButtonSizeEnum,
     ButtonTypeEnum,
@@ -7,5 +8,6 @@ export {
     CheckboxVariantEnum,
     InputTypeEnum,
     InputVariantEnum,
+    LogoSizeEnum,
 } from "./atoms";
 export { HtmlElementEnum, OrientationEnum, SelectPositionEnum } from "./common";

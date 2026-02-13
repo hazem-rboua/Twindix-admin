@@ -8,8 +8,8 @@ import {
     Button,
     Separator,
 } from "@/atoms";
-import { commonConstants, layoutsConstants } from "@/constants";
-import { navigationData } from "@/data";
+import { buttonsConstants, labelsConstants } from "@/constants";
+import { commonData, sidebarData } from "@/data";
 import { AvatarSizeEnum, ButtonSizeEnum, ButtonVariantEnum } from "@/enums";
 import type { LucideIconNameType } from "@/types";
 import { generateClassNameHandler } from "@/utils";
@@ -22,7 +22,7 @@ const renderIconHandler = (iconName: string) => {
     return <IconComponent className="size-5" />;
 };
 
-export const SidebarShared = () => {
+export const Sidebar = () => {
     const { pathname } = useLocation();
 
     return (
@@ -50,11 +50,11 @@ export const SidebarShared = () => {
                 "
             >
                 <img
-                    alt={commonConstants.brandName}
+                    alt={commonData.brandName}
                     className="size-10"
                     src="/apple-touch-icon.png"
                 />
-                <span className="text-lg font-bold text-primary">{commonConstants.brandName}</span>
+                <span className="text-lg font-bold text-primary">{commonData.brandName}</span>
             </div>
             <Separator />
             <div
@@ -66,17 +66,20 @@ export const SidebarShared = () => {
                 "
             >
                 <Avatar
-                    fallback={layoutsConstants.sidebar.fallback}
                     size={AvatarSizeEnum.SM}
+                    fallback={labelsConstants.name.slice(
+                        0,
+                        2,
+                    ).toUpperCase()}
                 />
                 <div className="flex flex-col">
-                    <span className="text-sm font-medium text-text-primary">{layoutsConstants.sidebar.name}</span>
-                    <span className="text-xs text-text-muted">{layoutsConstants.sidebar.email}</span>
+                    <span className="text-sm font-medium text-text-primary">{labelsConstants.name}</span>
+                    <span className="text-xs text-text-muted">{labelsConstants.emailExample}</span>
                 </div>
             </div>
             <Separator />
             <nav className="flex-1 overflow-y-auto p-2">
-                {navigationData.map((item) => {
+                {sidebarData.map((item) => {
                     const {
                         children,
                         icon,
@@ -174,7 +177,7 @@ export const SidebarShared = () => {
                     variant={ButtonVariantEnum.OUTLINE}
                     onClick={() => {}}
                 >
-                    {layoutsConstants.sidebar.logout}
+                    {buttonsConstants.logout}
                 </Button>
             </div>
         </aside>

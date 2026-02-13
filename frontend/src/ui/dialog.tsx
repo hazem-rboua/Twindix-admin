@@ -4,7 +4,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import * as React from "react";
 
-import { uiConstants } from "@/constants";
+import { buttonsConstants } from "@/constants";
 import { generateClassNameHandler } from "@/utils";
 
 export const Dialog = DialogPrimitive.Root;
@@ -115,7 +115,7 @@ export const DialogContent = React.forwardRef<
                 "
             >
                 <X className="h-4 w-4" />
-                <span className="sr-only">{uiConstants.dialog.close}</span>
+                <span className="sr-only">{buttonsConstants.close}</span>
             </DialogPrimitive.Close>
         </DialogPrimitive.Content>
     </DialogPortal>

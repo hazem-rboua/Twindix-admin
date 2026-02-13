@@ -3,6 +3,13 @@ export enum AccordionTypeEnum {
     SINGLE = "single",
 }
 
+export enum AlertVariantEnum {
+    ERROR = "error",
+    INFO = "info",
+    SUCCESS = "success",
+    WARNING = "warning",
+}
+
 export enum AvatarSizeEnum {
     LG = "lg",
     MD = "md",
@@ -26,6 +33,7 @@ export enum ButtonVariantEnum {
     DANGER = "danger",
     GHOST = "ghost",
     ICON = "icon",
+    LINK = "link",
     OUTLINE = "outline",
     PRIMARY = "primary",
     WARNING = "warning",
@@ -46,4 +54,10 @@ export enum InputTypeEnum {
 export enum InputVariantEnum {
     DEFAULT = "default",
     SEARCH = "search",
+}
+
+export enum LogoSizeEnum {
+    LG = "lg",
+    MD = "md",
+    SM = "sm",
 }

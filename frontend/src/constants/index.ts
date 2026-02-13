@@ -1,5 +1,5 @@
-export { commonConstants } from "./common";
-export { layoutsConstants } from "./layouts";
-export { routesConstants } from "./routes";
-export { uiConstants } from "./ui";
-export { viewsConstants } from "./views";
+export { buttonsConstants } from "./buttons";
+export { descriptionsConstants } from "./descriptions";
+export { labelsConstants } from "./labels";
+export { msgsConstants } from "./msgs";
+export { titlesConstants } from "./titles";

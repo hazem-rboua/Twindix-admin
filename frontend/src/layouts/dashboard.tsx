@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 
-import { SidebarShared } from "@/components";
+import { Sidebar } from "@/components";
 
 export const DashboardLayout = () => (
     <div className="flex min-h-screen bg-background">
-        <SidebarShared />
+        <Sidebar />
         <main
             className="
                 ml-sidebar

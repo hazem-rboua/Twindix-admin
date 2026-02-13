@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 
 import { Button, Input } from "@/atoms";
 import { ButtonVariantEnum, InputVariantEnum } from "@/enums";
-import { cn } from "@/utils";
+import { generateClassNameHandler } from "@/utils";
 
-export const PageHeaderShared = ({
+export const PageHeader = ({
     actions,
     className,
     hasBackButton = false,

@@ -14,6 +14,14 @@ const variantMap: Record<ButtonVariantEnum, string> = {
         hover:text-primary-dark
     `,
     [ButtonVariantEnum.ICON]: "p-2 size-10 rounded-full",
+    [ButtonVariantEnum.LINK]: `
+        p-0
+        h-auto
+        text-primary
+        bg-transparent
+        underline-offset-4
+        hover:underline
+    `,
     [ButtonVariantEnum.OUTLINE]: `
         text-primary
         bg-transparent
@@ -42,6 +50,7 @@ export const Button = ({
     children,
     className,
     isDisabled = false,
+    isFullWidth = false,
     isLoading = false,
     onClick,
     size = ButtonSizeEnum.MD,
@@ -51,6 +60,7 @@ export const Button = ({
     children: ReactNode,
     className?: string,
     isDisabled?: boolean,
+    isFullWidth?: boolean,
     isLoading?: boolean,
     onClick?: () => void,
     size?: ButtonSizeEnum,
@@ -64,6 +74,7 @@ export const Button = ({
             "rounded-default font-medium transition-colors",
             variantMap[variant],
             sizeMap[size],
+            isFullWidth && "w-full",
             className,
         )}
         onClick={onClick}

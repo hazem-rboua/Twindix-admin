@@ -52,8 +52,8 @@ export const ScrollBar = React.forwardRef<
             select-none
             transition-colors
         `,
-            orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-px",
-            orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-px",
+            orientation === OrientationEnum.VERTICAL && "h-full w-2.5 border-l border-l-transparent p-px",
+            orientation === OrientationEnum.HORIZONTAL && "h-2.5 flex-col border-t border-t-transparent p-px",
             className,
         )}
         {...props}

@@ -1,2 +1,2 @@
-export { PageHeaderShared } from "./shared/page-header";
-export { SidebarShared } from "./shared/sidebar";
+export { PageHeader } from "./shared/page-header";
+export { Sidebar } from "./shared/sidebar";

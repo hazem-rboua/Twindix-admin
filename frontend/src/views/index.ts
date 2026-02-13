@@ -1,12 +1,13 @@
 export { AccessControlView } from "./access-control";
 export { AssessmentsView } from "./assessments";
+export { ForgotPasswordAuthView } from "./auth/forgot-password";
+export { LoginAuthView } from "./auth/login";
+export { ResetPasswordAuthView } from "./auth/reset-password";
 export { BenchmarksView } from "./benchmarks";
 export { ContactView } from "./contact";
 export { DiscountsView } from "./discounts";
-export { ForgetPasswordView } from "./forget-password";
 export { HomeView } from "./home";
 export { JobTitleQuestionView } from "./job-title-question";
-export { LoginView } from "./login";
 export { ManageEnrollmentsView } from "./manage-enrollments";
 export { OrdersView } from "./orders";
 export { PackagesView } from "./packages";

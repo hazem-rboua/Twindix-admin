@@ -1,0 +1,16 @@
+export const routesData = {
+    accessControl: "/access-control",
+    assessment: "/assessment",
+    benchmarks: "/benchmarks",
+    contact: "/contact",
+    discounts: "/discounts",
+    forgotPassword: "/forgot-password",
+    home: "/",
+    jobTitleQuestion: "/job-title-question",
+    login: "/login",
+    manageEnrollments: "/manage-enrollments",
+    orders: "/orders",
+    packages: "/packages",
+    resetPassword: "/reset-password",
+    templates: "/templates",
+};

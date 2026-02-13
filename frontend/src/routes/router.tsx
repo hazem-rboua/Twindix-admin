@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { routesConstants } from "@/constants";
+import { routesData } from "@/data";
 import { AuthLayout, DashboardLayout } from "@/layouts";
 import {
     AccessControlView,
@@ -8,78 +8,96 @@ import {
     BenchmarksView,
     ContactView,
     DiscountsView,
-    ForgetPasswordView,
+    ForgotPasswordAuthView,
     HomeView,
     JobTitleQuestionView,
-    LoginView,
+    LoginAuthView,
     ManageEnrollmentsView,
     OrdersView,
     PackagesView,
+    ResetPasswordAuthView,
     TemplatesView,
 } from "@/views";
+
+import { ProtectedRoute } from "./protected";
+import { PublicRoute } from "./public";
 
 export const router = createBrowserRouter([
     {
         children: [
             {
-                element: <HomeView />,
-                index: true,
-            },
-            {
-                element: <AccessControlView />,
-                path: routesConstants.accessControl,
-            },
-            {
-                element: <AssessmentsView />,
-                path: routesConstants.assessment,
-            },
-            {
-                element: <BenchmarksView />,
-                path: routesConstants.benchmarks,
-            },
-            {
-                element: <ContactView />,
-                path: routesConstants.contact,
-            },
-            {
-                element: <DiscountsView />,
-                path: routesConstants.discounts,
-            },
-            {
-                element: <JobTitleQuestionView />,
-                path: routesConstants.jobTitleQuestion,
-            },
-            {
-                element: <ManageEnrollmentsView />,
-                path: routesConstants.manageEnrollments,
-            },
-            {
-                element: <OrdersView />,
-                path: routesConstants.orders,
-            },
-            {
-                element: <PackagesView />,
-                path: routesConstants.packages,
-            },
-            {
-                element: <TemplatesView />,
-                path: routesConstants.templates,
+                children: [
+                    {
+                        element: <HomeView />,
+                        index: true,
+                    },
+                    {
+                        element: <AccessControlView />,
+                        path: routesData.accessControl,
+                    },
+                    {
+                        element: <AssessmentsView />,
+                        path: routesData.assessment,
+                    },
+                    {
+                        element: <BenchmarksView />,
+                        path: routesData.benchmarks,
+                    },
+                    {
+                        element: <ContactView />,
+                        path: routesData.contact,
+                    },
+                    {
+                        element: <DiscountsView />,
+                        path: routesData.discounts,
+                    },
+                    {
+                        element: <JobTitleQuestionView />,
+                        path: routesData.jobTitleQuestion,
+                    },
+                    {
+                        element: <ManageEnrollmentsView />,
+                        path: routesData.manageEnrollments,
+                    },
+                    {
+                        element: <OrdersView />,
+                        path: routesData.orders,
+                    },
+                    {
+                        element: <PackagesView />,
+                        path: routesData.packages,
+                    },
+                    {
+                        element: <TemplatesView />,
+                        path: routesData.templates,
+                    },
+                ],
+                element: <DashboardLayout />,
+                path: routesData.home,
             },
         ],
-        element: <DashboardLayout />,
-        path: routesConstants.home,
+        element: <ProtectedRoute />,
     },
     {
         children: [
             {
-                element: <LoginView />,
-                path: routesConstants.login,
-            },
-            {
-                element: <ForgetPasswordView />,
-                path: routesConstants.forgetPassword,
+                children: [
+                    {
+                        element: <LoginAuthView />,
+                        path: routesData.login,
+                    },
+                    {
+                        element: <ForgotPasswordAuthView />,
+                        path: routesData.forgotPassword,
+                    },
+                    {
+                        element: <ResetPasswordAuthView />,
+                        path: routesData.resetPassword,
+                    },
+                ],
+                element: <AuthLayout />,
             },
         ],
-        element: <AuthLayout />,
+        element: <PublicRoute />,
     },
 ]);
