@@ -1,22 +1,34 @@
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { msgsConstants } from "@/constants";
 import { AuthContext } from "@/contexts";
 import { commonData } from "@/data";
+import type { UserInterface } from "@/interfaces";
 import { authService } from "@/services";
 import { deleteCookieHandler, getCookieHandler, setCookieHandler } from "@/utils";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(
-        () => !!getCookieHandler(commonData.token.tokenKey),
-    );
+    const [isAuthenticated, setIsAuthenticated] = useState(() => !!getCookieHandler(commonData.token.tokenKey));
 
     const [error, setError] = useState("");
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const clearErrorHandler = () => setError("");
+    const [user, setUser] = useState<UserInterface | null>(null);
+
+    const fetchUserHandler = useCallback(
+        async () => {
+            try {
+                const userData = await authService.meHandler();
+
+                setUser(userData);
+            } catch {
+                setUser(null);
+            }
+        },
+        [],
+    );
 
     const loginHandler = async (email: string, password: string) => {
         setIsLoading(true);
@@ -31,7 +43,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
             setCookieHandler(
                 commonData.token.tokenKey,
-                response.token,
+                response.data.token,
             );
 
             setIsAuthenticated(true);
@@ -49,8 +61,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const logoutHandler = () => {
         deleteCookieHandler(commonData.token.tokenKey);
 
+        setUser(null);
+
         setIsAuthenticated(false);
     };
+
+    useEffect(
+        () => {
+            if (isAuthenticated) fetchUserHandler();
+        },
+        [isAuthenticated, fetchUserHandler],
+    );
 
     return (
         <AuthContext
@@ -58,9 +79,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 error,
                 isAuthenticated,
                 isLoading,
-                onClearError: clearErrorHandler,
+                onClearError: () => setError(""),
                 onLogin: loginHandler,
                 onLogout: logoutHandler,
+                user,
             }}
         >
             {children}

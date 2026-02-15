@@ -68,7 +68,7 @@ axiosClient.interceptors.response.use(
         const originalRequest = config as InternalAxiosRequestConfig & { isRetry?: boolean };
 
         if (status === 401 && !originalRequest.isRetry) {
-            if (originalRequest.url === apisData.refresh) {
+            if (originalRequest.url === apisData.auth.refresh) {
                 deleteCookieHandler(commonData.token.tokenKey);
 
                 window.location.href = getLoginUrlWithReturnPathHandler();
@@ -92,7 +92,7 @@ axiosClient.interceptors.response.use(
             isRefreshing = true;
 
             try {
-                const tokenResponse = await axiosClient.post<{ token: string }>(apisData.refresh);
+                const tokenResponse = await axiosClient.post<{ token: string }>(apisData.auth.refresh);
 
                 const newToken = tokenResponse.data.token;
 

@@ -1,17 +1,17 @@
 import { apisData } from "@/data";
-import type { LoginResponseType } from "@/types";
+import type { LoginResponseInterface, MeResponseInterface, UserInterface } from "@/interfaces";
 import { axiosClient } from "@/utils";
 
 export const authService = {
     forgotPasswordHandler: async (email: string): Promise<void> => {
         await axiosClient.post(
-            apisData.forgotPassword,
+            apisData.auth.forgotPassword,
             { email },
         );
     },
-    loginHandler: async (email: string, password: string): Promise<LoginResponseType> => {
-        const { data } = await axiosClient.post<LoginResponseType>(
-            apisData.login,
+    loginHandler: async (email: string, password: string): Promise<LoginResponseInterface> => {
+        const { data } = await axiosClient.post<LoginResponseInterface>(
+            apisData.auth.login,
             {
                 email,
                 password,
@@ -20,6 +20,11 @@ export const authService = {
 
         return data;
     },
+    meHandler: async (): Promise<UserInterface> => {
+        const { data } = await axiosClient.get<MeResponseInterface>(apisData.auth.me);
+
+        return data.data;
+    },
     resetPasswordHandler: async (
         token: string,
         email: string,
@@ -27,7 +32,7 @@ export const authService = {
         passwordConfirmation: string,
     ): Promise<void> => {
         await axiosClient.post(
-            apisData.resetPassword,
+            apisData.auth.resetPassword,
             {
                 email,
                 password,
