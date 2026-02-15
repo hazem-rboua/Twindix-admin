@@ -10,8 +10,8 @@ export const sidebarData = [
     },
     {
         icon: "ClipboardCheck",
-        label: labelsConstants.sidebar.assessment,
-        path: routesData.assessment,
+        label: labelsConstants.sidebar.assessments,
+        path: routesData.assessments,
     },
     {
         icon: "BarChart3",
@@ -45,8 +45,8 @@ export const sidebarData = [
     },
     {
         icon: "BriefcaseBusiness",
-        label: labelsConstants.sidebar.jobTitleQuestion,
-        path: routesData.jobTitleQuestion,
+        label: labelsConstants.sidebar.jobTitleQuestions,
+        path: routesData.jobTitleQuestions,
     },
     {
         icon: "Mail",
