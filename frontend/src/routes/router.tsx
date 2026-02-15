@@ -15,6 +15,7 @@ import {
     ManageEnrollmentsView,
     OrdersView,
     PackagesView,
+    ProfileView,
     ResetPasswordAuthView,
     TemplatesView,
 } from "@/views";
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
                     {
                         element: <PackagesView />,
                         path: routesData.packages,
+                    },
+                    {
+                        element: <ProfileView />,
+                        path: routesData.profile,
                     },
                     {
                         element: <TemplatesView />,

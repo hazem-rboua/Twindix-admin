@@ -11,6 +11,7 @@ export const routesData = {
     manageEnrollments: "/manage-enrollments",
     orders: "/orders",
     packages: "/packages",
+    profile: "/profile",
     resetPassword: "/reset-password",
     templates: "/templates",
 };

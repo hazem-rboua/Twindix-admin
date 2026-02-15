@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components";
 import { labelsConstants } from "@/constants";
 
-export const JobTitleQuestionView = () => <h1>{labelsConstants.sidebar.jobTitleQuestion}</h1>;
+export const JobTitleQuestionView = () => <PageHeader title={labelsConstants.sidebar.jobTitleQuestion} />;

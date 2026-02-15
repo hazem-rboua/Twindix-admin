@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components";
 import { labelsConstants } from "@/constants";
 
-export const AssessmentsView = () => <h1>{labelsConstants.sidebar.assessment}</h1>;
+export const AssessmentsView = () => <PageHeader title={labelsConstants.sidebar.assessment} />;

@@ -9,6 +9,7 @@ import { generateClassNameHandler } from "@/utils";
 export const buttonVariants = cva(
     `
     inline-flex
+    cursor-pointer
     items-center
     justify-center
     gap-2
@@ -84,8 +85,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonPropsType>(
                 {...props}
             />
         );
-    },
-);
+    });
 
 Button.displayName = "Button";
 

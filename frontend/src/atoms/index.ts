@@ -4,6 +4,7 @@ export { Avatar } from "./avatar";
 export { Button } from "./button";
 export { Checkbox } from "./checkbox";
 export { Dialog, DialogTrigger } from "./dialog";
+export { DropdownMenu } from "./dropdown-menu";
 export { Input } from "./input";
 export { Label } from "./label";
 export { Logo } from "./logo";

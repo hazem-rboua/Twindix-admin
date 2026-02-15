@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components";
 import { labelsConstants } from "@/constants";
 
-export const AccessControlView = () => <h1>{labelsConstants.sidebar.accessControl}</h1>;
+export const AccessControlView = () => <PageHeader title={labelsConstants.sidebar.accessControl} />;

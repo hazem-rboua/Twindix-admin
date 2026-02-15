@@ -11,4 +11,5 @@ export { JobTitleQuestionView } from "./job-title-question";
 export { ManageEnrollmentsView } from "./manage-enrollments";
 export { OrdersView } from "./orders";
 export { PackagesView } from "./packages";
+export { ProfileView } from "./profile";
 export { TemplatesView } from "./templates";

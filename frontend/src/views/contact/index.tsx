@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components";
 import { labelsConstants } from "@/constants";
 
-export const ContactView = () => <h1>{labelsConstants.sidebar.contact}</h1>;
+export const ContactView = () => <PageHeader title={labelsConstants.sidebar.contact} />;

@@ -1,3 +1,4 @@
-import { labelsConstants } from "@/constants";
+import { PageHeader } from "@/components";
+import { titlesConstants } from "@/constants";
 
-export const HomeView = () => <h1>{labelsConstants.sidebar.home}</h1>;
+export const HomeView = () => <PageHeader title={titlesConstants.dashboard} />;

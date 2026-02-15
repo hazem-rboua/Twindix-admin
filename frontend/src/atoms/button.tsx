@@ -11,15 +11,25 @@ const variantMap: Record<ButtonVariantEnum, string> = {
         text-primary
         underline
         bg-transparent
+        hover:bg-transparent
         hover:text-primary-dark
     `,
-    [ButtonVariantEnum.ICON]: "p-2 size-10 rounded-full",
+    [ButtonVariantEnum.ICON]: `
+        p-2
+        size-10
+        text-text-secondary
+        bg-transparent
+        rounded-full
+        hover:bg-accent
+        hover:text-text-dark
+    `,
     [ButtonVariantEnum.LINK]: `
         p-0
         h-auto
         text-primary
         bg-transparent
         underline-offset-4
+        hover:bg-transparent
         hover:underline
     `,
     [ButtonVariantEnum.OUTLINE]: `
