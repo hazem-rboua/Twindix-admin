@@ -1,39 +1,107 @@
 @import "tailwindcss";
 
+:root {
+    --raw-background: #F6F6F6;
+    --raw-surface: #FFFFFF;
+    --raw-primary: #1356BC;
+    --raw-primary-dark: #0025BA;
+    --raw-primary-light: #4A7FD4;
+    --raw-primary-lighter: #A8C4F5;
+    --raw-primary-medium: #2557B8;
+    --raw-secondary: #0025BA;
+    --raw-muted: #7C8FBA;
+    --raw-error: #DC2626;
+    --raw-error-light: #EF4444;
+    --raw-text-primary: #0025BA;
+    --raw-text-secondary: #6B7280;
+    --raw-text-muted: #9CA3AF;
+    --raw-text-dark: #000000;
+    --raw-warning: #F59E0B;
+    --raw-warning-dark: #D97706;
+    --raw-success: #16A34A;
+    --raw-success-light: #22C55E;
+    --raw-accent: #F1F5F9;
+    --raw-accent-foreground: #0F172A;
+    --raw-border: #E2E8F0;
+    --raw-destructive: #DC2626;
+    --raw-destructive-foreground: #FFFFFF;
+    --raw-input: #E2E8F0;
+    --raw-muted-foreground: #64748B;
+    --raw-popover: #FFFFFF;
+    --raw-popover-foreground: #0F172A;
+    --raw-primary-foreground: #FFFFFF;
+    --raw-ring: #1356BC;
+    --raw-secondary-foreground: #FFFFFF;
+}
+
+.dark {
+    --raw-background: #0F1419;
+    --raw-surface: #1A1F2E;
+    --raw-primary: #4A90E2;
+    --raw-primary-dark: #6AAFE6;
+    --raw-primary-light: #3B7DD8;
+    --raw-primary-lighter: #2A5FA0;
+    --raw-primary-medium: #5A9BE8;
+    --raw-secondary: #6AAFE6;
+    --raw-muted: #4A5568;
+    --raw-error: #F87171;
+    --raw-error-light: #FCA5A5;
+    --raw-text-primary: #93B4E8;
+    --raw-text-secondary: #9CA3AF;
+    --raw-text-muted: #6B7280;
+    --raw-text-dark: #F9FAFB;
+    --raw-warning: #FBBF24;
+    --raw-warning-dark: #F59E0B;
+    --raw-success: #34D399;
+    --raw-success-light: #6EE7B7;
+    --raw-accent: #1E293B;
+    --raw-accent-foreground: #F8FAFC;
+    --raw-border: #2D3748;
+    --raw-destructive: #F87171;
+    --raw-destructive-foreground: #1A1F2E;
+    --raw-input: #2D3748;
+    --raw-muted-foreground: #94A3B8;
+    --raw-popover: #1A1F2E;
+    --raw-popover-foreground: #F8FAFC;
+    --raw-primary-foreground: #FFFFFF;
+    --raw-ring: #4A90E2;
+    --raw-secondary-foreground: #FFFFFF;
+}
+
 @theme {
-    --color-primary: #1356BC;
-    --color-primary-dark: #0025BA;
-    --color-primary-light: #4A7FD4;
-    --color-primary-lighter: #A8C4F5;
-    --color-primary-medium: #2557B8;
-    --color-secondary: #0025BA;
-    --color-muted: #7C8FBA;
-    --color-error: #DC2626;
-    --color-error-light: #EF4444;
-    --color-background: #F6F6F6;
-    --color-surface: #FFFFFF;
-    --color-text-primary: #0025BA;
-    --color-text-secondary: #6B7280;
-    --color-text-muted: #9CA3AF;
-    --color-text-dark: #000000;
+    --color-primary: var(--raw-primary);
+    --color-primary-dark: var(--raw-primary-dark);
+    --color-primary-light: var(--raw-primary-light);
+    --color-primary-lighter: var(--raw-primary-lighter);
+    --color-primary-medium: var(--raw-primary-medium);
+    --color-secondary: var(--raw-secondary);
+    --color-muted: var(--raw-muted);
+    --color-error: var(--raw-error);
+    --color-error-light: var(--raw-error-light);
+    --color-background: var(--raw-background);
+    --color-surface: var(--raw-surface);
+    --color-text-primary: var(--raw-text-primary);
+    --color-text-secondary: var(--raw-text-secondary);
+    --color-text-muted: var(--raw-text-muted);
+    --color-text-dark: var(--raw-text-dark);
 
-    --color-warning: #F59E0B;
-    --color-warning-dark: #D97706;
-    --color-success: #16A34A;
-    --color-success-light: #22C55E;
+    --color-warning: var(--raw-warning);
+    --color-warning-dark: var(--raw-warning-dark);
+    --color-success: var(--raw-success);
+    --color-success-light: var(--raw-success-light);
 
-    --color-accent: #F1F5F9;
-    --color-accent-foreground: #0F172A;
-    --color-border: #E2E8F0;
-    --color-destructive: #DC2626;
-    --color-destructive-foreground: #FFFFFF;
-    --color-input: #E2E8F0;
-    --color-muted-foreground: #64748B;
-    --color-popover: #FFFFFF;
-    --color-popover-foreground: #0F172A;
-    --color-primary-foreground: #FFFFFF;
-    --color-ring: #1356BC;
-    --color-secondary-foreground: #FFFFFF;
+    --color-accent: var(--raw-accent);
+    --color-accent-foreground: var(--raw-accent-foreground);
+    --color-border: var(--raw-border);
+    --color-destructive: var(--raw-destructive);
+    --color-destructive-foreground: var(--raw-destructive-foreground);
+    --color-input: var(--raw-input);
+    --color-muted-foreground: var(--raw-muted-foreground);
+    --color-popover: var(--raw-popover);
+    --color-popover-foreground: var(--raw-popover-foreground);
+    --color-primary-foreground: var(--raw-primary-foreground);
+    --color-ring: var(--raw-ring);
+    --color-secondary-foreground: var(--raw-secondary-foreground);
 
     --spacing-sidebar: 250px;
 
@@ -58,10 +126,12 @@
 body {
     font-family: var(--font-family-roboto);
     background-color: var(--color-background);
+    color: var(--color-text-dark);
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 #root {

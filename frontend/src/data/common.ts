@@ -6,14 +6,23 @@ export const commonData = {
         expiresPrefix: "; expires=",
         pathSuffix: "; path=/",
     },
+    prefix: "v",
     queryParams: {
         email: "email",
         returnUrl: "returnUrl",
         token: "token",
+    },
+    theme: {
+        darkClass: "dark",
+        darkValue: "dark",
+        lightValue: "light",
+        mediaQuery: "(prefers-color-scheme: dark)",
+        storageKey: "twindix_admin_theme",
     },
     token: {
         authorizationHeader: "Authorization",
         bearerPrefix: "Bearer ",
         tokenKey: "twindix_admin_token",
     },
+    version: "0.2.0",
 };

@@ -10,4 +10,6 @@ export const msgsConstants = {
     passwordMismatch: "Passwords do not match.",
     passwordRequired: "Password is required.",
     resetPasswordSuccess: "Your password has been reset successfully.",
+    sidebarProviderRequired: "useSidebar must be used within a SidebarProvider",
+    themeProviderRequired: "useTheme must be used within a ThemeProvider",
 };
