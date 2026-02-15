@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-import type { AuthContextType } from "@/types";
+import type { AuthContextInterface } from "@/interfaces";
 
-export const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<AuthContextInterface | null>(null);

@@ -1,5 +1,5 @@
-import { AccordionTypeEnum } from "@/enums";
-import type { AccordionItemType } from "@/types";
+import { AccordionEnum } from "@/enums";
+import type { AccordionItemInterface } from "@/interfaces";
 import {
     Accordion as UiAccordion,
     AccordionContent,
@@ -11,15 +11,15 @@ import { generateClassNameHandler } from "@/utils";
 export const Accordion = ({
     className,
     items,
-    type = AccordionTypeEnum.SINGLE,
+    type = AccordionEnum.SINGLE,
 }: {
     className?: string,
-    items: AccordionItemType[],
-    type?: AccordionTypeEnum,
+    items: AccordionItemInterface[],
+    type?: AccordionEnum,
 }) => (
     <UiAccordion
         className={generateClassNameHandler(className)}
-        collapsible={type === AccordionTypeEnum.SINGLE}
+        collapsible={type === AccordionEnum.SINGLE}
         type={type}
     >
         {items.map(({
