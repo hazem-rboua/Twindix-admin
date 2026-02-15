@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\PermissionController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 // Authentication routes
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
+
+    Route::middleware('throttle:5,1')->group(function () {
+        Route::post('forgot-password', [PasswordResetController::class, 'forgotPassword']);
+        Route::post('reset-password', [PasswordResetController::class, 'resetPassword']);
+    });
     
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
