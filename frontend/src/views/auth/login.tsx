@@ -11,7 +11,7 @@ import {
     ButtonSizeEnum,
     ButtonTypeEnum,
     ButtonVariantEnum,
-    InputTypeEnum,
+    InputEnum,
 } from "@/enums";
 import { useAuth } from "@/hooks";
 import { loginAuthSchema } from "@/schemas";
@@ -87,7 +87,7 @@ export const LoginAuthView = () => {
                     hasError={!!displayError}
                     label={labelsConstants.email}
                     placeholder={labelsConstants.emailPlaceholder}
-                    type={InputTypeEnum.EMAIL}
+                    type={InputEnum.EMAIL}
                     value={email}
                     onChange={(value) => {
                         setEmail(value);
@@ -99,7 +99,7 @@ export const LoginAuthView = () => {
                     hasError={!!displayError}
                     label={labelsConstants.password}
                     placeholder={labelsConstants.passwordPlaceholder}
-                    type={InputTypeEnum.PASSWORD}
+                    type={InputEnum.PASSWORD}
                     value={password}
                     isShowPasswordToggle
                     onChange={(value) => {

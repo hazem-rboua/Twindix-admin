@@ -10,7 +10,7 @@ import {
     AlertVariantEnum,
     ButtonTypeEnum,
     ButtonVariantEnum,
-    InputTypeEnum,
+    InputEnum,
 } from "@/enums";
 import { forgotPasswordAuthSchema } from "@/schemas";
 import { authService } from "@/services";
@@ -92,7 +92,7 @@ export const ForgotPasswordAuthView = () => {
                     hasError={!!error}
                     label={labelsConstants.email}
                     placeholder={labelsConstants.emailPlaceholder}
-                    type={InputTypeEnum.EMAIL}
+                    type={InputEnum.EMAIL}
                     value={email}
                     onChange={(value) => {
                         setEmail(value);

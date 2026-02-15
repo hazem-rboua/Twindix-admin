@@ -1,7 +1,7 @@
 import { Eye, EyeOff, Search } from "lucide-react";
 import { useState } from "react";
 
-import { ButtonTypeEnum, InputTypeEnum, InputVariantEnum } from "@/enums";
+import { ButtonTypeEnum, InputEnum, InputVariantEnum } from "@/enums";
 import { Input as UiInput } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
@@ -18,7 +18,7 @@ export const Input = ({
     onChange,
     placeholder,
     suffix,
-    type = InputTypeEnum.TEXT,
+    type = InputEnum.TEXT,
     value,
     variant = InputVariantEnum.DEFAULT,
 }: {
@@ -32,15 +32,15 @@ export const Input = ({
     onChange?: (value: string) => void,
     placeholder?: string,
     suffix?: string,
-    type?: InputTypeEnum,
+    type?: InputEnum,
     value?: string,
     variant?: InputVariantEnum,
 }) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-    const isPasswordType = type === InputTypeEnum.PASSWORD;
+    const isPasswordType = type === InputEnum.PASSWORD;
 
-    const resolvedType = isPasswordType && isPasswordVisible ? InputTypeEnum.TEXT : type;
+    const resolvedType = isPasswordType && isPasswordVisible ? InputEnum.TEXT : type;
 
     const togglePasswordVisibilityHandler = () => setIsPasswordVisible((prev) => !prev);
 

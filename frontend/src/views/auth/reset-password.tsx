@@ -10,7 +10,7 @@ import {
     AlertVariantEnum,
     ButtonTypeEnum,
     ButtonVariantEnum,
-    InputTypeEnum,
+    InputEnum,
 } from "@/enums";
 import { resetPasswordAuthSchema } from "@/schemas";
 import { authService } from "@/services";
@@ -146,7 +146,7 @@ export const ResetPasswordAuthView = () => {
                     hasError={!!error}
                     label={labelsConstants.newPassword}
                     placeholder={labelsConstants.newPasswordPlaceholder}
-                    type={InputTypeEnum.PASSWORD}
+                    type={InputEnum.PASSWORD}
                     value={password}
                     isShowPasswordToggle
                     onChange={(value) => {
@@ -159,7 +159,7 @@ export const ResetPasswordAuthView = () => {
                     hasError={!!error}
                     label={labelsConstants.confirmPassword}
                     placeholder={labelsConstants.confirmPasswordPlaceholder}
-                    type={InputTypeEnum.PASSWORD}
+                    type={InputEnum.PASSWORD}
                     value={confirmPassword}
                     isShowPasswordToggle
                     onChange={(value) => {

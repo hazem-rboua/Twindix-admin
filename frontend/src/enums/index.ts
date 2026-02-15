@@ -1,12 +1,12 @@
 export {
-    AccordionTypeEnum,
+    AccordionEnum,
     AlertVariantEnum,
     AvatarSizeEnum,
     ButtonSizeEnum,
     ButtonTypeEnum,
     ButtonVariantEnum,
     CheckboxVariantEnum,
-    InputTypeEnum,
+    InputEnum,
     InputVariantEnum,
     LogoSizeEnum,
 } from "./atoms";

@@ -1,4 +1,4 @@
-export enum AccordionTypeEnum {
+export enum AccordionEnum {
     MULTIPLE = "multiple",
     SINGLE = "single",
 }
@@ -44,7 +44,7 @@ export enum CheckboxVariantEnum {
     DEFAULT = "default",
 }
 
-export enum InputTypeEnum {
+export enum InputEnum {
     EMAIL = "email",
     NUMBER = "number",
     PASSWORD = "password",
