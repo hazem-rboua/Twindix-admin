@@ -2,15 +2,11 @@ import * as LucideIcons from "lucide-react";
 import type { ComponentType } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import {
-    Accordion,
-    Avatar,
-    Button,
-    Separator,
-} from "@/atoms";
-import { buttonsConstants, labelsConstants } from "@/constants";
+import { Button, Separator } from "@/atoms";
+import { buttonsConstants } from "@/constants";
 import { commonData, sidebarData } from "@/data";
-import { AvatarSizeEnum, ButtonSizeEnum, ButtonVariantEnum } from "@/enums";
+import { ButtonSizeEnum, ButtonVariantEnum } from "@/enums";
+import { useAuth, useSidebar } from "@/hooks";
 import type { LucideIconNameType } from "@/types";
 import { generateClassNameHandler } from "@/utils";
 
@@ -25,28 +21,42 @@ const renderIconHandler = (iconName: string) => {
 export const Sidebar = () => {
     const { pathname } = useLocation();
 
+    const { onLogout } = useAuth();
+
+    const {
+        isSidebarOpen,
+        onCloseSidebar,
+    } = useSidebar();
+
     return (
         <aside
-            className="
+            className={generateClassNameHandler(
+                `
                 fixed
                 top-0
                 left-0
-                z-40
+                z-50
                 flex
                 h-full
                 w-sidebar
                 flex-col
                 border-r
-                border-muted
+                border-border
                 bg-surface
-            "
+                transition-transform
+                duration-300
+                md:translate-x-0
+            `,
+                isSidebarOpen ? "translate-x-0" : "-translate-x-full",
+            )}
         >
             <div
                 className="
                     flex
                     items-center
                     gap-3
-                    p-4
+                    p-3
+                    md:p-4
                 "
             >
                 <img
@@ -57,28 +67,17 @@ export const Sidebar = () => {
                 <span className="text-lg font-bold text-primary">{commonData.brandName}</span>
             </div>
             <Separator />
-            <div
+            <nav
                 className="
                     flex
-                    items-center
-                    gap-3
-                    p-4
+                    flex-1
+                    flex-col
+                    gap-1
+                    overflow-y-auto
+                    p-2
+                    md:p-3
                 "
             >
-                <Avatar
-                    size={AvatarSizeEnum.SM}
-                    fallback={labelsConstants.name.slice(
-                        0,
-                        2,
-                    ).toUpperCase()}
-                />
-                <div className="flex flex-col">
-                    <span className="text-sm font-medium text-text-primary">{labelsConstants.name}</span>
-                    <span className="text-xs text-text-muted">{labelsConstants.emailExample}</span>
-                </div>
-            </div>
-            <Separator />
-            <nav className="flex-1 overflow-y-auto p-2">
                 {sidebarData.map((item) => {
                     const {
                         children,
@@ -91,58 +90,71 @@ export const Sidebar = () => {
 
                     if (children) {
                         return (
-                            <Accordion
+                            <div
+                                className="flex flex-col gap-1"
                                 key={path}
-                                items={[
-                                    {
-                                        content: (
-                                            <div
-                                                className="
+                            >
+                                <span
+                                    className="
+                                        flex
+                                        items-center
+                                        gap-3
+                                        px-3
+                                        py-2
+                                        text-xs
+                                        font-semibold
+                                        tracking-wider
+                                        text-text-muted
+                                        uppercase
+                                    "
+                                >
+                                    {renderIconHandler(icon)}
+                                    {label}
+                                </span>
+                                <div
+                                    className="
+                                        flex
+                                        flex-col
+                                        gap-0.5
+                                        pl-4
+                                    "
+                                >
+                                    {children.map((child) => {
+                                        const {
+                                            icon,
+                                            label,
+                                            path,
+                                        } = child;
+
+                                        const isChildActive = pathname === path;
+
+                                        return (
+                                            <Link
+                                                key={path}
+                                                to={path}
+                                                className={generateClassNameHandler(
+                                                    `
                                                     flex
-                                                    flex-col
-                                                    gap-1
-                                                    pl-4
-                                                "
+                                                    items-center
+                                                    gap-3
+                                                    rounded-default
+                                                    px-3
+                                                    py-2
+                                                    text-sm
+                                                    transition-all
+                                                    duration-200
+                                                `,
+                                                    isChildActive ? "border-l-3 border-primary bg-primary/10 font-semibold text-primary" : "text-text-secondary hover:bg-primary/5 hover:text-primary",
+                                                )}
+                                                onClick={onCloseSidebar}
                                             >
-                                                {children.map((child) => {
-                                                    const {
-                                                        icon,
-                                                        label,
-                                                        path,
-                                                    } = child;
-
-                                                    const isChildActive = pathname === path;
-
-                                                    return (
-                                                        <Link
-                                                            key={path}
-                                                            to={path}
-                                                            className={generateClassNameHandler(
-                                                                `
-                                                                flex
-                                                                items-center
-                                                                gap-3
-                                                                rounded-default
-                                                                px-3
-                                                                py-2
-                                                                text-sm
-                                                                transition-colors
-                                                            `,
-                                                                isChildActive ? "bg-primary text-white" : "text-text-secondary hover:bg-background",
-                                                            )}
-                                                        >
-                                                            {renderIconHandler(icon)}
-                                                            {label}
-                                                        </Link>
-                                                    );
-                                                })}
-                                            </div>
-                                        ),
-                                        title: label,
-                                        value: path,
-                                    },
-                                ]}
-                            />
+                                                {renderIconHandler(icon)}
+                                                {label}
+                                            </Link>
+                                        );
+                                    })}
+                                </div>
+                            </div>
                         );
                     }
 
@@ -159,10 +171,12 @@ export const Sidebar = () => {
                                 px-3
                                 py-2
                                 text-sm
-                                transition-colors
+                                transition-all
+                                duration-200
                             `,
-                                isActive ? "bg-primary text-white" : "text-text-secondary hover:bg-background",
+                                isActive ? "border-l-3 border-primary bg-primary/10 font-semibold text-primary" : "text-text-secondary hover:bg-primary/5 hover:text-primary",
                             )}
+                            onClick={onCloseSidebar}
                         >
                             {renderIconHandler(icon)}
                             {label}
@@ -171,14 +185,28 @@ export const Sidebar = () => {
                 })}
             </nav>
             <Separator />
-            <div className="p-4">
+            <div
+                className="
+                    flex
+                    flex-col
+                    gap-2
+                    p-3
+                    md:p-4
+                "
+            >
                 <Button
+                    className="no-underline"
                     size={ButtonSizeEnum.FULL}
-                    variant={ButtonVariantEnum.OUTLINE}
-                    onClick={() => {}}
+                    variant={ButtonVariantEnum.GHOST}
+                    onClick={onLogout}
                 >
-                    {buttonsConstants.logout}
+                    <LucideIcons.LogOut className="size-4 text-error" />
+                    <span className="text-error">{buttonsConstants.logout}</span>
                 </Button>
+                <span className="text-center text-xs text-text-muted">
+                    {commonData.prefix}
+                    {commonData.version}
+                </span>
             </div>
         </aside>
     );

@@ -25,7 +25,7 @@ export const AuthLayout = () => {
                 bg-surface
             "
         >
-            <header className="p-6">
+            <header className="p-4 md:p-6">
                 <Logo size={LogoSizeEnum.MD} />
             </header>
             <main className="flex flex-1">
@@ -52,11 +52,22 @@ export const AuthLayout = () => {
                             right-0
                             bottom-0
                             left-0
-                            p-8
+                            p-4
                             text-white
+                            md:p-8
                         "
                     >
-                        <h1 className="mb-3 text-3xl font-bold">{sidebarTitle}</h1>
+                        <h1
+                            className="
+                                mb-2
+                                text-2xl
+                                font-bold
+                                md:mb-3
+                                md:text-3xl
+                            "
+                        >
+                            {sidebarTitle}
+                        </h1>
                         <p className="text-sm leading-relaxed text-white/90">{sidebarDescription}</p>
                     </div>
                 </div>
@@ -66,7 +77,8 @@ export const AuthLayout = () => {
                         w-full
                         items-center
                         justify-center
-                        p-8
+                        p-4
+                        md:p-8
                         lg:w-1/2
                     "
                 >
@@ -75,13 +87,14 @@ export const AuthLayout = () => {
                             className="
                                 text-gradient
                                 mb-2
-                                text-3xl
+                                text-2xl
                                 font-bold
+                                md:text-3xl
                             "
                         >
                             {title}
                         </h1>
-                        <p className="mb-8 text-text-secondary">{description}</p>
+                        <p className="mb-4 text-text-secondary md:mb-8">{description}</p>
                         <Outlet />
                     </div>
                 </div>
