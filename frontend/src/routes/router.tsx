@@ -13,6 +13,7 @@ import {
     JobTitleQuestionView,
     LoginAuthView,
     ManageEnrollmentsView,
+    NotFoundView,
     OrdersView,
     PackagesView,
     ProfileView,
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         element: <AssessmentsView />,
-                        path: routesData.assessment,
+                        path: routesData.assessments,
                     },
                     {
                         element: <BenchmarksView />,
@@ -54,7 +55,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         element: <JobTitleQuestionView />,
-                        path: routesData.jobTitleQuestion,
+                        path: routesData.jobTitleQuestions,
                     },
                     {
                         element: <ManageEnrollmentsView />,
@@ -104,5 +105,9 @@ export const router = createBrowserRouter([
             },
         ],
         element: <PublicRoute />,
+    },
+    {
+        element: <NotFoundView />,
+        path: "*",
     },
 ]);

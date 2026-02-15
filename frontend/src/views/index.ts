@@ -9,6 +9,7 @@ export { DiscountsView } from "./discounts";
 export { HomeView } from "./home";
 export { JobTitleQuestionView } from "./job-title-question";
 export { ManageEnrollmentsView } from "./manage-enrollments";
+export { NotFoundView } from "./not-found";
 export { OrdersView } from "./orders";
 export { PackagesView } from "./packages";
 export { ProfileView } from "./profile";

@@ -6,6 +6,8 @@ export const msgsConstants = {
     genericError: "Something went wrong. Please try again.",
     invalidEmail: "Please enter a valid email address.",
     invalidResetLink: "This password reset link is invalid or has expired.",
+    notFoundDescription: "The page you are looking for does not exist or has been moved.",
+    notFoundTitle: "Page Not Found",
     passwordMinLength: "Password must be at least 8 characters.",
     passwordMismatch: "Passwords do not match.",
     passwordRequired: "Password is required.",

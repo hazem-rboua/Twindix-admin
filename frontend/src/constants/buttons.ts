@@ -1,4 +1,5 @@
 export const buttonsConstants = {
+    backToHome: "Back to Home",
     backToLogin: "Back to login",
     close: "Close",
     forgotPasswordLink: "Reset it",
