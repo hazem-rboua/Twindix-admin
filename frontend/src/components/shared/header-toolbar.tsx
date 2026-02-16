@@ -82,20 +82,20 @@ export const HeaderToolbar = () => {
                 md:py-1.5
             "
         >
-            <div className="relative flex items-center">
-                <Button
-                    className="no-underline"
-                    variant={ButtonVariantEnum.ICON}
-                    onClick={isSearchExpanded ? collapseSearchHandler : expandSearchHandler}
-                >
-                    {isSearchExpanded ? <X className="size-4" /> : <Search className="size-4" />}
-                </Button>
-                <input
-                    placeholder={labelsConstants.searchPlaceholder}
-                    ref={inputRef}
-                    value={searchValue}
-                    className={generateClassNameHandler(
-                        `
+            <Button
+                className="no-underline"
+                variant={ButtonVariantEnum.ICON}
+                onClick={isSearchExpanded ? collapseSearchHandler : expandSearchHandler}
+            >
+                {isSearchExpanded ? <X className="size-4" /> : <Search className="size-4" />}
+            </Button>
+            <input
+                placeholder={labelsConstants.searchPlaceholder}
+                ref={inputRef}
+                value={searchValue}
+                className={generateClassNameHandler(
+                    `
+                        relative
                         h-8
                         rounded-full
                         border-none
@@ -108,13 +108,12 @@ export const HeaderToolbar = () => {
                         transition-all
                         duration-300
                     `,
-                        isSearchExpanded ? "w-36 opacity-100 md:w-48" : "w-0 p-0 opacity-0",
-                    )}
-                    onBlur={collapseSearchHandler}
-                    onChange={({ target }) => setSearchValue(target.value)}
-                    onKeyDown={searchKeyDownHandler}
-                />
-            </div>
+                    isSearchExpanded ? "w-36 opacity-100 md:w-48" : "w-0 p-0 opacity-0",
+                )}
+                onBlur={collapseSearchHandler}
+                onChange={({ target }) => setSearchValue(target.value)}
+                onKeyDown={searchKeyDownHandler}
+            />
             <Button
                 className="no-underline"
                 variant={ButtonVariantEnum.ICON}
@@ -124,24 +123,15 @@ export const HeaderToolbar = () => {
             </Button>
             <UiDropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <button
-                        className="
-                            flex
-                            size-10
-                            cursor-pointer
-                            items-center
-                            justify-center
-                            rounded-full
-                            transition-opacity
-                            outline-none
-                            hover:opacity-80
-                        "
+                    <Button
+                        className="p-0 hover:opacity-80"
+                        variant={ButtonVariantEnum.ICON}
                     >
                         <Avatar
                             fallback={(user?.name ?? labelsConstants.name).charAt(0)}
                             size={AvatarSizeEnum.SM}
                         />
-                    </button>
+                    </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
                     align="end"
