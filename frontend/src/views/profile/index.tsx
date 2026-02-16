@@ -1,5 +1,5 @@
 import { Avatar } from "@/atoms";
-import { PageHeader } from "@/components";
+import { Header } from "@/components";
 import { labelsConstants, titlesConstants } from "@/constants";
 import { AvatarSizeEnum } from "@/enums";
 import { useAuth } from "@/hooks";
@@ -22,7 +22,7 @@ export const ProfileView = () => {
                 md:gap-6
             "
         >
-            <PageHeader title={titlesConstants.profile} />
+            <Header title={titlesConstants.profile} />
             <div
                 className="
                     flex

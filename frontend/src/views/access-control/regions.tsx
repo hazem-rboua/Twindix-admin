@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components";
+import { Header } from "@/components";
 import { labelsConstants } from "@/constants";
 
-export const RegionsAccessControlView = () => <PageHeader title={labelsConstants.sidebar.regions} />;
+export const RegionsAccessControlView = () => <Header title={labelsConstants.sidebar.regions} />;

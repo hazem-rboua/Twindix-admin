@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components";
+import { Header } from "@/components";
 import { labelsConstants } from "@/constants";
 
-export const PermissionsAccessControlView = () => <PageHeader title={labelsConstants.sidebar.permissions} />;
+export const PermissionsAccessControlView = () => <Header title={labelsConstants.sidebar.permissions} />;

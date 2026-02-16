@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components";
+import { Header } from "@/components";
 import { labelsConstants } from "@/constants";
 
-export const PackagesView = () => <PageHeader title={labelsConstants.sidebar.packages} />;
+export const PackagesView = () => <Header title={labelsConstants.sidebar.packages} />;

@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components";
+import { Header } from "@/components";
 import { labelsConstants } from "@/constants";
 
-export const SuperAdminsAccessControlView = () => <PageHeader title={labelsConstants.sidebar.superAdmins} />;
+export const SuperAdminsAccessControlView = () => <Header title={labelsConstants.sidebar.superAdmins} />;

@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components";
+import { Header } from "@/components";
 import { labelsConstants } from "@/constants";
 
-export const BenchmarksView = () => <PageHeader title={labelsConstants.sidebar.benchmarks} />;
+export const BenchmarksView = () => <Header title={labelsConstants.sidebar.benchmarks} />;

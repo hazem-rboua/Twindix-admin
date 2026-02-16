@@ -1,4 +1,4 @@
-import { PageHeader } from "@/components";
+import { Header } from "@/components";
 import { labelsConstants } from "@/constants";
 
-export const TypesAccessControlView = () => <PageHeader title={labelsConstants.sidebar.types} />;
+export const TypesAccessControlView = () => <Header title={labelsConstants.sidebar.types} />;
