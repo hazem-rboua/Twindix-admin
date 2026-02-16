@@ -1,11 +1,12 @@
 import * as LucideIcons from "lucide-react";
 import type { ComponentType } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { Button, Separator } from "@/atoms";
 import { buttonsConstants } from "@/constants";
 import { commonData, sidebarData } from "@/data";
-import { ButtonSizeEnum, ButtonVariantEnum } from "@/enums";
+import { ButtonSizeEnum, ButtonTypeEnum, ButtonVariantEnum } from "@/enums";
 import { useAuth, useSidebar } from "@/hooks";
 import type { LucideIconNameType } from "@/types";
 import { generateClassNameHandler } from "@/utils";
@@ -19,6 +20,8 @@ const renderIconHandler = (iconName: string) => {
 };
 
 export const Sidebar = () => {
+    const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
+
     const { pathname } = useLocation();
 
     const { onLogout } = useAuth();
@@ -27,6 +30,11 @@ export const Sidebar = () => {
         isSidebarOpen,
         onCloseSidebar,
     } = useSidebar();
+
+    const toggleGroupHandler = (path: string) => setExpandedGroups((prev) => ({
+        ...prev,
+        [path]: !prev[path],
+    }));
 
     return (
         <aside
@@ -91,15 +99,20 @@ export const Sidebar = () => {
                     if (children) {
                         const isParentActive = children.some(({ path }) => pathname.startsWith(path));
 
+                        const isExpanded = expandedGroups[path] ?? isParentActive;
+
                         return (
                             <div
                                 className="flex flex-col gap-1"
                                 key={path}
                             >
-                                <span
+                                <button
+                                    type={ButtonTypeEnum.BUTTON}
                                     className={generateClassNameHandler(
                                         `
                                             flex
+                                            w-full
+                                            cursor-pointer
                                             items-center
                                             gap-3
                                             px-3
@@ -108,20 +121,34 @@ export const Sidebar = () => {
                                             font-semibold
                                             tracking-wider
                                             uppercase
+                                            transition-colors
                                         `,
-                                        isParentActive ? "text-primary" : "text-text-muted",
+                                        isParentActive ? "text-primary" : "text-text-muted hover:text-text-secondary",
                                     )}
+                                    onClick={() => toggleGroupHandler(path)}
                                 >
                                     {renderIconHandler(icon)}
-                                    {label}
-                                </span>
+                                    <span className="flex-1 text-left">{label}</span>
+                                    <LucideIcons.ChevronDown
+                                        className={generateClassNameHandler(
+                                            "size-4 transition-transform duration-200",
+                                            isExpanded ? "rotate-180" : "",
+                                        )}
+                                    />
+                                </button>
                                 <div
-                                    className="
-                                        flex
-                                        flex-col
-                                        gap-0.5
-                                        pl-4
-                                    "
+                                    className={generateClassNameHandler(
+                                        `
+                                            flex
+                                            flex-col
+                                            gap-0.5
+                                            overflow-hidden
+                                            pl-4
+                                            transition-all
+                                            duration-200
+                                        `,
+                                        isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
+                                    )}
                                 >
                                     {children.map((child) => {
                                         const {
