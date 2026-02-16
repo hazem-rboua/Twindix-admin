@@ -29,7 +29,10 @@ export const labelsConstants = {
         manageEnrollments: "Manage Enrollments",
         orders: "Orders",
         packages: "Packages",
-        superAdmin: "Super Admin",
+        permissions: "Permissions",
+        regions: "Regions",
+        superAdmins: "Super Admins",
         templates: "Templates",
+        types: "Types",
     },
 };

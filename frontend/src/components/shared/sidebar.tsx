@@ -89,24 +89,28 @@ export const Sidebar = () => {
                     const isActive = pathname === path;
 
                     if (children) {
+                        const isParentActive = children.some(({ path }) => pathname.startsWith(path));
+
                         return (
                             <div
                                 className="flex flex-col gap-1"
                                 key={path}
                             >
                                 <span
-                                    className="
-                                        flex
-                                        items-center
-                                        gap-3
-                                        px-3
-                                        py-2
-                                        text-xs
-                                        font-semibold
-                                        tracking-wider
-                                        text-text-muted
-                                        uppercase
-                                    "
+                                    className={generateClassNameHandler(
+                                        `
+                                            flex
+                                            items-center
+                                            gap-3
+                                            px-3
+                                            py-2
+                                            text-xs
+                                            font-semibold
+                                            tracking-wider
+                                            uppercase
+                                        `,
+                                        isParentActive ? "text-primary" : "text-text-muted",
+                                    )}
                                 >
                                     {renderIconHandler(icon)}
                                     {label}

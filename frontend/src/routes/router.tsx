@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 import { routesData } from "@/data";
 import { AuthLayout, DashboardLayout } from "@/layouts";
 import {
-    AccessControlView,
     AssessmentsView,
     BenchmarksView,
     ContactView,
@@ -16,9 +15,13 @@ import {
     NotFoundView,
     OrdersView,
     PackagesView,
+    PermissionsAccessControlView,
     ProfileView,
+    RegionsAccessControlView,
     ResetPasswordAuthView,
+    SuperAdminsAccessControlView,
     TemplatesView,
+    TypesAccessControlView,
 } from "@/views";
 
 import { ProtectedRoute } from "./protected";
@@ -34,8 +37,20 @@ export const router = createBrowserRouter([
                         index: true,
                     },
                     {
-                        element: <AccessControlView />,
-                        path: routesData.accessControl,
+                        element: <PermissionsAccessControlView />,
+                        path: routesData.accessControlPermissions,
+                    },
+                    {
+                        element: <RegionsAccessControlView />,
+                        path: routesData.accessControlRegions,
+                    },
+                    {
+                        element: <SuperAdminsAccessControlView />,
+                        path: routesData.accessControlSuperAdmins,
+                    },
+                    {
+                        element: <TypesAccessControlView />,
+                        path: routesData.accessControlTypes,
                     },
                     {
                         element: <AssessmentsView />,

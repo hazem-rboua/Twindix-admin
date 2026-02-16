@@ -1,5 +1,9 @@
 export const routesData = {
     accessControl: "/access-control",
+    accessControlPermissions: "/access-control/permissions",
+    accessControlRegions: "/access-control/regions",
+    accessControlSuperAdmins: "/access-control/super-admins",
+    accessControlTypes: "/access-control/types",
     assessments: "/assessments",
     benchmarks: "/benchmarks",
     contact: "/contact",

@@ -57,8 +57,23 @@ export const sidebarData = [
         children: [
             {
                 icon: "ShieldCheck",
-                label: labelsConstants.sidebar.superAdmin,
-                path: routesData.accessControl,
+                label: labelsConstants.sidebar.superAdmins,
+                path: routesData.accessControlSuperAdmins,
+            },
+            {
+                icon: "SquareUser",
+                label: labelsConstants.sidebar.types,
+                path: routesData.accessControlTypes,
+            },
+            {
+                icon: "Globe",
+                label: labelsConstants.sidebar.regions,
+                path: routesData.accessControlRegions,
+            },
+            {
+                icon: "LockKeyhole",
+                label: labelsConstants.sidebar.permissions,
+                path: routesData.accessControlPermissions,
             },
         ],
         icon: "Lock",

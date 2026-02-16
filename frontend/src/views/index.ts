@@ -1,4 +1,7 @@
-export { AccessControlView } from "./access-control";
+export { PermissionsAccessControlView } from "./access-control/permissions";
+export { RegionsAccessControlView } from "./access-control/regions";
+export { SuperAdminsAccessControlView } from "./access-control/super-admins";
+export { TypesAccessControlView } from "./access-control/types";
 export { AssessmentsView } from "./assessments";
 export { ForgotPasswordAuthView } from "./auth/forgot-password";
 export { LoginAuthView } from "./auth/login";
