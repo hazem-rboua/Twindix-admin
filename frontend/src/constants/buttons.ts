@@ -1,4 +1,8 @@
 export const buttonsConstants = {
+    addAdmin: "+ Add Admin",
+    addRegion: "+ Add Region",
+    addSuperAdmin: "+ Add Super Admin",
+    back: "Back",
     backToHome: "Back to Home",
     backToLogin: "Back to login",
     close: "Close",

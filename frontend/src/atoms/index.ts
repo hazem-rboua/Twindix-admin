@@ -1,6 +1,7 @@
 export { Accordion } from "./accordion";
 export { Alert } from "./alert";
 export { Avatar } from "./avatar";
+export { Badge } from "./badge";
 export { Button } from "./button";
 export { Checkbox } from "./checkbox";
 export { Dialog, DialogTrigger } from "./dialog";

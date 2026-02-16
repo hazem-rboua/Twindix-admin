@@ -2,6 +2,7 @@ export {
     AccordionEnum,
     AlertVariantEnum,
     AvatarSizeEnum,
+    BadgeVariantEnum,
     ButtonSizeEnum,
     ButtonTypeEnum,
     ButtonVariantEnum,

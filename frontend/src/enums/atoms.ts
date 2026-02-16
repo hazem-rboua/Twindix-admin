@@ -3,6 +3,12 @@ export enum AccordionEnum {
     SINGLE = "single",
 }
 
+export enum BadgeVariantEnum {
+    DEFAULT = "default",
+    OUTLINE = "outline",
+    SECONDARY = "secondary",
+}
+
 export enum AlertVariantEnum {
     ERROR = "error",
     INFO = "info",

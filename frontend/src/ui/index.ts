@@ -5,9 +5,11 @@ export {
     AccordionTrigger,
 } from "./accordion";
 export { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+export { Badge, badgeVariants } from "./badge";
 export type { ButtonPropsType } from "./button";
 export { Button, buttonVariants } from "./button";
 export { Checkbox } from "./checkbox";
+export { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
 export {
     Dialog,
     DialogClose,
@@ -46,4 +48,14 @@ export {
     SelectValue,
 } from "./select";
 export { Separator } from "./separator";
+export {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableFooter,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "./table";
 export { Textarea } from "./textarea";
