@@ -78,6 +78,7 @@ frontend/
 │   ├── routes/                # Router config, route guards (ProtectedRoute, PublicRoute)
 │   ├── schemas/               # Yup validation schemas organized by feature
 │   ├── services/              # API service functions (auth, business logic)
+│   ├── store/                 # Zustand global stores (network error, sidebar)
 │   ├── types/                 # TypeScript type aliases
 │   ├── ui/                    # Raw Radix/shadcn components (auto-generated, do not edit)
 │   ├── utils/                 # Utility functions (axios, cookies, helpers)
@@ -112,6 +113,23 @@ frontend/
 - `data/` — Config, structured objects, and non-rendered values (API endpoints, route paths, cookie/token config, navigation items)
 
 For detailed architecture guidelines, see [AGENTS.md](./AGENTS.md).
+
+## Error Handling
+
+The app uses 4 layers to catch errors at different scopes:
+
+| Layer | What | Catches |
+|-------|------|---------|
+| **Zustand store** | `useNetworkErrorStore` in `App.tsx` | Async network/offline errors from hooks |
+| **Error boundary** | `BoundaryErrorClass` wrapping the router | Render errors above the router (providers, etc.) |
+| **Route error element** | `ErrorView` via `errorElement` in routes | Render errors inside route components |
+| **Try-catch** | `try-catch` in async hooks | API failures, validation errors |
+
+Error boundaries and `errorElement` only catch **synchronous render errors**. Async errors (API calls in `useEffect`) can't be caught by them — that's why the Zustand store exists for network errors.
+
+Shared helpers (`checkIsNetworkErrorHandler`, `getErrorMessageHandler`) live in `src/utils/error.ts` and are used by both the error boundary and the route error view.
+
+For full details, see the [Error Handling Architecture](./AGENTS.md#error-handling-architecture) section in AGENTS.md.
 
 ## Node Version
 - The required Node.js version is specified in `.nvmrc` and `package.json` (`24.12.0`).

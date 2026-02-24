@@ -8,7 +8,7 @@ import {
     User,
     X,
 } from "lucide-react";
-import type { KeyboardEvent, ReactNode } from "react";
+import type { KeyboardEvent } from "react";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,8 @@ import { Avatar, Button } from "@/atoms";
 import { buttonsConstants, labelsConstants } from "@/constants";
 import { routesData } from "@/data";
 import { AvatarSizeEnum, ButtonVariantEnum } from "@/enums";
-import { useAuth, useSidebar, useTheme } from "@/hooks";
+import { useAuth, useTheme } from "@/hooks";
+import { useSidebarStore } from "@/store";
 import {
     DropdownMenu as UiDropdownMenu,
     DropdownMenuContent,
@@ -29,13 +30,11 @@ import {
 import { generateClassNameHandler } from "@/utils";
 
 export const Header = ({
-    actions,
     className,
     hasBackButton = false,
     onBackClick,
     title,
 }: {
-    actions?: ReactNode,
     className?: string,
     hasBackButton?: boolean,
     onBackClick?: () => void,
@@ -59,7 +58,7 @@ export const Header = ({
         onToggleTheme,
     } = useTheme();
 
-    const { onToggleSidebar } = useSidebar();
+    const { onToggleSidebar } = useSidebarStore();
 
     const expandSearchHandler = () => {
         setIsSearchExpanded(true);
@@ -120,9 +119,9 @@ export const Header = ({
                 )}
                 <h1
                     className="
+                        text-gradient
                         text-xl
                         font-bold
-                        text-primary
                         md:text-2xl
                     "
                 >
@@ -137,7 +136,6 @@ export const Header = ({
                     md:gap-3
                 "
             >
-                {actions}
                 <div
                     className="
                         flex
@@ -153,7 +151,7 @@ export const Header = ({
                         md:py-1.5
                     "
                 >
-                    <div className="relative flex items-center">
+                    <div className="flex items-center">
                         <Button
                             className="no-underline"
                             variant={ButtonVariantEnum.ICON}
@@ -167,21 +165,19 @@ export const Header = ({
                             value={searchValue}
                             className={generateClassNameHandler(
                                 `
-                                    absolute
-                                    left-full
                                     h-8
                                     rounded-full
                                     border-none
                                     bg-accent
-                                    px-3
                                     text-sm
                                     text-text-dark
                                     outline-none
                                     placeholder:text-text-muted
                                     transition-all
                                     duration-300
+                                    ease-in-out
                                 `,
-                                isSearchExpanded ? "w-36 opacity-100 md:w-48" : "w-0 p-0 opacity-0",
+                                isSearchExpanded ? "w-40 px-3 opacity-100 md:w-52" : "w-0 px-0 opacity-0",
                             )}
                             onBlur={collapseSearchHandler}
                             onChange={({ target }) => setSearchValue(target.value)}
@@ -210,7 +206,7 @@ export const Header = ({
                             "
                         >
                             <Avatar
-                                fallback={(user?.name ?? labelsConstants.name).charAt(0)}
+                                fallback={(user?.name ?? labelsConstants.adminUser).charAt(0)}
                                 size={AvatarSizeEnum.SM}
                             />
                         </DropdownMenuTrigger>
@@ -220,7 +216,7 @@ export const Header = ({
                         >
                             <DropdownMenuLabel>
                                 <div className="flex flex-col gap-0.5">
-                                    <span className="text-sm font-semibold text-text-dark">{user?.name ?? labelsConstants.name}</span>
+                                    <span className="text-sm font-semibold text-text-dark">{user?.name ?? labelsConstants.adminUser}</span>
                                     <span className="text-xs font-normal text-text-muted">{user?.email ?? labelsConstants.emailExample}</span>
                                 </div>
                             </DropdownMenuLabel>

@@ -10,6 +10,8 @@ export type {
     InputType,
     InputVariantType,
     LogoSizeType,
+    TableColumnType,
+    TableExpandStateType,
 } from "./atoms";
 export type {
     HtmlElementType,

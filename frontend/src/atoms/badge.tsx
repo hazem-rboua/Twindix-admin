@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import { BadgeVariantEnum } from "@/enums";
-import { Badge as UiBadge } from "@/ui";
+import { Badge as BadgeUI } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
 const variantMap: Record<BadgeVariantEnum, string> = {
@@ -19,7 +19,7 @@ export const Badge = ({
     className?: string,
     variant?: BadgeVariantEnum,
 }) => (
-    <UiBadge
+    <BadgeUI
         className={generateClassNameHandler(
             "rounded-full px-3 py-1 text-xs font-medium",
             variantMap[variant],
@@ -27,5 +27,5 @@ export const Badge = ({
         )}
     >
         {children}
-    </UiBadge>
+    </BadgeUI>
 );

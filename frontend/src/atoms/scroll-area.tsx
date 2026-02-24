@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { ScrollArea as UiScrollArea } from "@/ui";
+import { ScrollArea as ScrollAreaUI } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
 export const ScrollArea = ({
@@ -12,10 +12,10 @@ export const ScrollArea = ({
     className?: string,
     maxHeight?: string,
 }) => (
-    <UiScrollArea
+    <ScrollAreaUI
         className={generateClassNameHandler(className)}
         style={maxHeight ? { maxHeight } : undefined}
     >
         {children}
-    </UiScrollArea>
+    </ScrollAreaUI>
 );

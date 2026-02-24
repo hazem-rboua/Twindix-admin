@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks";
 export const ProfileView = () => {
     const { user } = useAuth();
 
-    const name = user?.name ?? labelsConstants.name;
+    const name = user?.name ?? labelsConstants.adminUser;
 
     const email = user?.email ?? labelsConstants.emailExample;
 

@@ -40,7 +40,7 @@ export const AuthLayout = () => {
                 >
                     <div
                         className="
-                            bg-gradient-auth
+                            bg-gradient
                             absolute
                             inset-0
                             rounded-tr-3xl

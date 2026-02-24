@@ -12,6 +12,130 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.4.0] - 2026-02-25
+
+**Error Boundary, Table UX Improvements & Theme Colors**
+
+### Added
+
+**Components**
+- Create `BoundaryErrorClass` error boundary (class component) at `src/components/shared/error/boundary/`
+- Wraps `RouterProvider` in `App.tsx` to catch render errors above the router scope
+
+**Utilities**
+- Create `src/utils/error.ts` with shared error helpers (`checkIsNetworkErrorHandler`, `getErrorMessageHandler`)
+- Helpers are shared between `BoundaryErrorClass` (render errors) and `ErrorView` (route errors)
+
+**Atoms**
+- Add `Loader` atom with centered flex wrapper — always centers in parent container
+- Add `LoaderSizeEnum` with `SM`, `MD`, `LG`, `XL` sizes
+- Table atom renders "N/A" placeholder when `onRender` returns falsy content
+
+**Theme**
+- Add `--color-info` (`#3B82F6` / dark: `#60A5FA`) for edit actions
+- Add `--color-gold` (`#B8860B` / dark: `#D4A017`) for suspend actions
+- Add `--color-slate` (`#2C3E50` / dark: `#3A5068`) for permissions actions
+
+**Constants**
+- Add `emptyCell` to `labelsConstants` for table empty cell placeholder
+
+### Changed
+
+**Error Handling Architecture**
+- Move error helpers from `boundary/` component to `src/utils/error.ts` (shared across components and views)
+- `ErrorView` now imports helpers from `@/utils` instead of `@/components`
+- Error handling layers: Zustand store (network offline) → ErrorBoundary (render errors above router) → `errorElement` (route errors) → try-catch (async/API errors)
+
+**Table Actions**
+- Replace hardcoded hex colors (`#2C3E50`, `#3B82F6`, `#B8860B`) with theme tokens (`bg-slate`, `bg-info`, `bg-gold`)
+- Add smooth hover brightness effect (`hover:brightness-125 transition-all duration-200`) to action buttons
+
+**Super Admins View**
+- Type column returns `null` for empty `user_type` so table renders "N/A" placeholder
+
+---
+
+## [0.3.2] - 2026-02-25
+
+**Sidebar Store, Hook Scope Separation & Accessibility Fixes**
+
+### Added
+
+**Hooks**
+- Create `useDeleteRegion` hook for region deletion (matching `useDeleteSuperAdmin` pattern)
+
+### Changed
+
+**State Management**
+- Replace `SidebarContext` + provider pattern with `useSidebarStore` Zustand store (simple state, no provider needed)
+- Rename `SidebarContextInterface` to `SidebarStoreInterface`
+- Simplify `DashboardLayout` — consume store directly, no context provider wrapping
+- Replace `onSetNetworkError(error)` with `throw error` in hooks (`useRegionsList`, `useSuperAdminsList`, `useGetSuperAdmin`) so the route error boundary handles network errors
+- Remove `<NetworkError />` overlay from `App.tsx` (handled by `ErrorView` route error boundary)
+
+**Hook Scope**
+- Remove `removeItemHandler` from `useSuperAdminsList` and `useRegionsList` — list hooks should only handle fetching
+- Views now use dedicated delete hooks (`useDeleteSuperAdmin`, `useDeleteRegion`) and refetch after successful deletion
+
+**Accessibility**
+- Replace sidebar overlay `<div onClick>` with `<button>` element in `DashboardLayout` (SonarQube S6848/S1082)
+
+### Removed
+
+- Delete `src/contexts/sidebar.tsx` — replaced by Zustand store
+- Delete `src/hooks/shared/use-sidebar.ts` — consumers use `useSidebarStore` directly
+- Delete `src/store/network-error.ts` — no longer used
+- Delete `NetworkErrorStoreInterface` from interfaces
+- Remove `sidebarProviderRequired` constant (no provider to validate)
+
+---
+
+## [0.3.1] - 2026-02-24
+
+**Reorganize Interfaces by Domain**
+
+### Changed
+
+**Interfaces**
+- Move `CountryInterface`, `CountryListResponseInterface` from `super-admins.ts` to `common.ts` (generic, not domain-specific)
+- Extract `RegionInterface`, `RegionListResponseInterface` into new `regions.ts` file
+- Keep only admin and super-admin interfaces in `super-admins.ts`
+- Update barrel exports in `index.ts` to reflect new file structure
+
+---
+
+## [0.3.0] - 2026-02-22
+
+**Global Network Error Store with Zustand**
+
+### Added
+
+**State Management**
+- Install `zustand` for simple global state management
+- Create `src/store/` folder with barrel export
+- Add `useNetworkErrorStore` zustand store for global network error handling
+- Add `NetworkErrorStoreInterface` to `src/interfaces/common.ts`
+- Render full-screen `<NetworkError />` overlay in `App.tsx` when store has error
+
+**Documentation**
+- Add "State Management" section to `CLAUDE.md` and `AGENTS.md` documenting Context+Provider vs Zustand pattern
+- Add `store/` folder to project structure in `AGENTS.md`
+
+### Changed
+
+**Hooks**
+- Replace local `networkError` state with global zustand store in `useSuperAdminsList`, `useGetSuperAdmin`, and `useRegionsList`
+- Remove `networkError` from hook return objects
+
+**Views**
+- Remove `networkError` destructuring and `throw` from `RegionsAccessControlView` and `SuperAdminsAccessControlView`
+
+### Dependencies
+
+- `zustand` 5.0.11
+
+---
+
 ## [0.1.1] - 2026-02-06
 
 **Documentation Sync with eslint-plugin-code-style v1.15.0**
@@ -54,7 +178,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Configure Roboto font family (weights: 300, 400, 500, 700)
 
 **Styling**
-- Add `.text-gradient` and `.text-gradient-error` utility classes
+- Add `.text-gradient` utility classes
 - Configure font smoothing for cross-browser consistency
 
 **Documentation**
@@ -88,5 +212,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[0.4.0]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.4.0
+[0.3.2]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.3.2
+[0.3.1]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.3.1
+[0.3.0]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.3.0
 [0.1.1]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.1.1
 [0.1.0]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.1.0

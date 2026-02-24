@@ -179,7 +179,16 @@ export default [ // eslint-disable-line
             "code-style/enum-format": "error",
             "code-style/enum-type-enforcement": "error",
             "code-style/export-format": "error",
-            "code-style/folder-based-naming-convention": "error",
+            "code-style/folder-based-naming-convention": ["error",
+                {
+                    files: [
+                        {
+                            chainOrder: "parent-child",
+                            paths: ["src/components/shared/table"],
+                        },
+                    ],
+                },
+            ],
             "code-style/folder-structure-consistency": "error",
             "code-style/function-arguments-format": "error",
             "code-style/function-call-spacing": "error",
@@ -189,6 +198,8 @@ export default [ // eslint-disable-line
             "code-style/function-params-per-line": "error",
             "code-style/hook-callback-format": "error",
             "code-style/hook-deps-per-line": "error",
+            "code-style/hook-file-naming-convention": "error",
+            "code-style/hook-function-naming-convention": "error",
             "code-style/if-else-spacing": "error",
             "code-style/if-statement-format": "error",
             "code-style/import-format": "error",

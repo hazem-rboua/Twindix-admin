@@ -1,5 +1,5 @@
 import { AvatarSizeEnum } from "@/enums";
-import { Avatar as UiAvatar, AvatarFallback, AvatarImage } from "@/ui";
+import { Avatar as AvatarUI, AvatarFallback, AvatarImage } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
 const sizeMap: Record<AvatarSizeEnum, string> = {
@@ -21,7 +21,7 @@ export const Avatar = ({
     size?: AvatarSizeEnum,
     src?: string,
 }) => (
-    <UiAvatar
+    <AvatarUI
         className={generateClassNameHandler(
             sizeMap[size],
             className,
@@ -43,5 +43,5 @@ export const Avatar = ({
         >
             {fallback}
         </AvatarFallback>
-    </UiAvatar>
+    </AvatarUI>
 );

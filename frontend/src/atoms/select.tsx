@@ -1,5 +1,5 @@
 import {
-    Select as UiSelect,
+    Select as SelectUI,
     SelectContent,
     SelectItem,
     SelectTrigger,
@@ -36,7 +36,7 @@ export const Select = ({
         )}
     >
         {label && (<Label>{label}</Label>)}
-        <UiSelect
+        <SelectUI
             disabled={isDisabled}
             value={value}
             onValueChange={onChange}
@@ -65,6 +65,6 @@ export const Select = ({
                     </SelectItem>
                 ))}
             </SelectContent>
-        </UiSelect>
+        </SelectUI>
     </div>
 );

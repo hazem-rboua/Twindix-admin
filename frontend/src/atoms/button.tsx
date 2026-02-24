@@ -2,7 +2,7 @@ import { Loader2 } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { ButtonSizeEnum, ButtonTypeEnum, ButtonVariantEnum } from "@/enums";
-import { Button as UiButton } from "@/ui";
+import { Button as ButtonUI } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
 const variantMap: Record<ButtonVariantEnum, string> = {
@@ -57,6 +57,7 @@ const sizeMap: Record<ButtonSizeEnum, string> = {
 };
 
 export const Button = ({
+    ariaLabel,
     children,
     className,
     isDisabled = false,
@@ -67,7 +68,8 @@ export const Button = ({
     type = ButtonTypeEnum.BUTTON,
     variant = ButtonVariantEnum.PRIMARY,
 }: {
-    children: ReactNode,
+    ariaLabel?: string,
+    children?: ReactNode,
     className?: string,
     isDisabled?: boolean,
     isFullWidth?: boolean,
@@ -77,7 +79,8 @@ export const Button = ({
     type?: ButtonTypeEnum,
     variant?: ButtonVariantEnum,
 }) => (
-    <UiButton
+    <ButtonUI
+        aria-label={ariaLabel}
         disabled={isDisabled || isLoading}
         type={type}
         className={generateClassNameHandler(
@@ -90,5 +93,5 @@ export const Button = ({
         onClick={onClick}
     >
         {isLoading ? <Loader2 className="size-4 animate-spin" /> : children}
-    </UiButton>
+    </ButtonUI>
 );

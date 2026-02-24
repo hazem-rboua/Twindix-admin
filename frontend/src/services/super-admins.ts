@@ -1,20 +1,20 @@
 import { apisData } from "@/data";
 import type {
-    AdminCreateInterface,
-    SuperAdminCreateInterface,
+    CreateAdminInterface,
+    CreateSuperAdminInterface,
     SuperAdminInterface,
     SuperAdminListResponseInterface,
 } from "@/interfaces";
 import { axiosClient } from "@/utils";
 
 export const superAdminsService = {
-    createAdminHandler: async (adminData: AdminCreateInterface): Promise<void> => {
+    createAdminHandler: async (adminData: CreateAdminInterface): Promise<void> => {
         await axiosClient.post(
             apisData.superAdmins.createAdmin,
             adminData,
         );
     },
-    createHandler: async (superAdminData: SuperAdminCreateInterface): Promise<SuperAdminInterface> => {
+    createHandler: async (superAdminData: CreateSuperAdminInterface): Promise<SuperAdminInterface> => {
         const { data } = await axiosClient.post<{ data: SuperAdminInterface }>(
             apisData.superAdmins.create,
             superAdminData,
@@ -35,7 +35,7 @@ export const superAdminsService = {
     pauseHandler: async (id: number): Promise<void> => await axiosClient.post(apisData.superAdmins.pause(id)),
     removeHandler: async (id: number): Promise<void> => await axiosClient["delete"](apisData.superAdmins.remove(id)), // eslint-disable-line code-style/no-hardcoded-strings -- axios method
     resumeHandler: async (id: number): Promise<void> => await axiosClient.post(apisData.superAdmins.resume(id)),
-    updateHandler: async (id: number, superAdminData: SuperAdminCreateInterface): Promise<SuperAdminInterface> => {
+    updateHandler: async (id: number, superAdminData: CreateSuperAdminInterface): Promise<SuperAdminInterface> => {
         const { data } = await axiosClient.put<{ data: SuperAdminInterface }>(
             apisData.superAdmins.update(id),
             superAdminData,

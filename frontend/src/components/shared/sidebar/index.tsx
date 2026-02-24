@@ -6,8 +6,9 @@ import { Link, useLocation } from "react-router-dom";
 import { Button, Separator } from "@/atoms";
 import { buttonsConstants } from "@/constants";
 import { commonData, sidebarData } from "@/data";
-import { ButtonSizeEnum, ButtonTypeEnum, ButtonVariantEnum } from "@/enums";
-import { useAuth, useSidebar } from "@/hooks";
+import { ButtonSizeEnum, ButtonVariantEnum } from "@/enums";
+import { useAuth } from "@/hooks";
+import { useSidebarStore } from "@/store";
 import type { LucideIconNameType } from "@/types";
 import { generateClassNameHandler } from "@/utils";
 
@@ -29,7 +30,7 @@ export const Sidebar = () => {
     const {
         isSidebarOpen,
         onCloseSidebar,
-    } = useSidebar();
+    } = useSidebarStore();
 
     const toggleGroupHandler = (path: string) => setExpandedGroups((prev) => ({
         ...prev,
@@ -106,15 +107,15 @@ export const Sidebar = () => {
                                 className="flex flex-col gap-1"
                                 key={path}
                             >
-                                <button
-                                    type={ButtonTypeEnum.BUTTON}
+                                <Button
+                                    variant={ButtonVariantEnum.ICON}
                                     className={generateClassNameHandler(
                                         `
                                             flex
                                             w-full
-                                            cursor-pointer
                                             items-center
                                             gap-3
+                                            rounded-none
                                             px-3
                                             py-2
                                             text-xs
@@ -131,40 +132,46 @@ export const Sidebar = () => {
                                     <span className="flex-1 text-left">{label}</span>
                                     <LucideIcons.ChevronDown
                                         className={generateClassNameHandler(
-                                            "size-4 transition-transform duration-200",
+                                            "size-4 transition-transform duration-300 ease-in-out",
                                             isExpanded ? "rotate-180" : "",
                                         )}
                                     />
-                                </button>
+                                </Button>
                                 <div
                                     className={generateClassNameHandler(
                                         `
+                                            grid
+                                            pl-4
+                                            transition-all
+                                            duration-300
+                                            ease-in-out
+                                        `,
+                                        isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
+                                    )}
+                                >
+                                    <div
+                                        className="
                                             flex
                                             flex-col
                                             gap-0.5
                                             overflow-hidden
-                                            pl-4
-                                            transition-all
-                                            duration-200
-                                        `,
-                                        isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
-                                    )}
-                                >
-                                    {children.map((child) => {
-                                        const {
-                                            icon,
-                                            label,
-                                            path,
-                                        } = child;
+                                        "
+                                    >
+                                        {children.map((child) => {
+                                            const {
+                                                icon,
+                                                label,
+                                                path,
+                                            } = child;
 
-                                        const isChildActive = pathname === path;
+                                            const isChildActive = pathname === path;
 
-                                        return (
-                                            <Link
-                                                key={path}
-                                                to={path}
-                                                className={generateClassNameHandler(
-                                                    `
+                                            return (
+                                                <Link
+                                                    key={path}
+                                                    to={path}
+                                                    className={generateClassNameHandler(
+                                                        `
                                                     flex
                                                     items-center
                                                     gap-3
@@ -175,15 +182,16 @@ export const Sidebar = () => {
                                                     transition-all
                                                     duration-200
                                                 `,
-                                                    isChildActive ? "border-l-3 border-primary bg-primary/10 font-semibold text-primary" : "text-text-secondary hover:bg-primary/5 hover:text-primary",
-                                                )}
-                                                onClick={onCloseSidebar}
-                                            >
-                                                {renderIconHandler(icon)}
-                                                {label}
-                                            </Link>
-                                        );
-                                    })}
+                                                        isChildActive ? "border-l-3 border-primary bg-primary/10 font-semibold text-primary" : "text-text-secondary hover:bg-primary/5 hover:text-primary",
+                                                    )}
+                                                    onClick={onCloseSidebar}
+                                                >
+                                                    {renderIconHandler(icon)}
+                                                    {label}
+                                                </Link>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
                             </div>
                         );

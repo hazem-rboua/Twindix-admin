@@ -62,6 +62,13 @@ export enum InputVariantEnum {
     SEARCH = "search",
 }
 
+export enum LoaderSizeEnum {
+    LG = "size-8",
+    MD = "size-6",
+    SM = "size-4",
+    XL = "size-12",
+}
+
 export enum LogoSizeEnum {
     LG = "lg",
     MD = "md",

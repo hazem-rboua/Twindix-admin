@@ -1,7 +1,5 @@
 export const buttonsConstants = {
-    addAdmin: "+ Add Admin",
-    addRegion: "+ Add Region",
-    addSuperAdmin: "+ Add Super Admin",
+    add: "+ Add",
     back: "Back",
     backToHome: "Back to Home",
     backToLogin: "Back to login",
@@ -12,4 +10,5 @@ export const buttonsConstants = {
     resetPassword: "Reset Password",
     sendResetLink: "Send Reset Link",
     signIn: "Sign In",
+    tryAgain: "Try Again",
 };

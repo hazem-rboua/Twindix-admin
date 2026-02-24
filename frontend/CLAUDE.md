@@ -18,9 +18,9 @@ For full instructions, see [AGENTS.md](./AGENTS.md).
 
 | Resource | Link |
 |----------|------|
-| **eslint-plugin-code-style (79 rules)** | https://github.com/Mohamed-Elhawary/eslint-plugin-code-style |
+| **eslint-plugin-code-style (81 rules)** | https://github.com/Mohamed-Elhawary/eslint-plugin-code-style |
 | **Local Config** | `eslint.config.js` |
-| **Current Version** | `1.17.0` (check `package.json`) |
+| **Current Version** | `2.2.2` (check `package.json`) |
 
 **Always run `pnpm lint:fix` after making changes.**
 
@@ -39,20 +39,22 @@ For full instructions, see [AGENTS.md](./AGENTS.md).
 |----------|------|-------------|
 | **Naming** | `function-naming-convention` 🔧 | camelCase + verb, `*Handler` suffix |
 | | `use-state-naming-convention` 🔧 | Boolean: `is`/`has`/`with` prefix |
-| | `interface-format` 🔧 | `*Interface` suffix |
+| | `interface-format` 🔧 | `*Interface` suffix; **verb-first ordering** (`CreateAdminInterface` not `AdminCreateInterface`) |
 | | `type-format` 🔧 | `*Type` suffix |
 | | `enum-format` 🔧 | `*Enum` suffix, UPPER_SNAKE_CASE members |
-| | `folder-based-naming-convention` 🔧 | Suffix by folder: `views/`→`*View`, `layouts/`→`*Layout`, `constants/`→`*Constants`, `data/`→`*Data`, `strings/`→`*Strings`, `services/`→`*Service`; chained names for nested files |
+| | `folder-based-naming-convention` 🔧 ⚙️ | Suffix by folder: `views/`→`*View`, `layouts/`→`*Layout`, `constants/`→`*Constants`, `data/`→`*Data`, `strings/`→`*Strings`, `services/`→`*Service`; chained names for nested files; singularizes plural folder names; configurable `chainOrder` |
 | | `svg-icon-naming-convention` | SVG → `*Icon` suffix |
 | **Imports** | `absolute-imports-only` 🔧 ⚙️ | Use `@/` from index files; relative imports within same module folder |
 | | `import-format` 🔧 | ≤3 inline, >3 multiline |
 | | `inline-export-declaration` 🔧 ⚙️ | Use `export const x = ...` not grouped `export { x }` in non-index files |
-| **Structure** | `folder-structure-consistency` ⚙️ | Flat vs wrapped must be consistent; no unnecessary wrapper folders |
-| | `no-redundant-folder-suffix` | File/folder names must not repeat parent folder suffix |
+| **Structure** | `folder-structure-consistency` ⚙️ | Flat vs wrapped must be consistent; no unnecessary wrapper folders; detects single-child nesting that should be flattened |
+| | `no-redundant-folder-suffix` | File/folder names must not repeat parent folder suffix; exception for hook files (`use-*`) in `hooks/` |
 | **Components** | `component-props-destructure` 🔧 | `({ prop })` not `(props)` |
 | | `component-props-inline-type` 🔧 | Inline type annotations |
 | **Hooks** | `hook-callback-format` 🔧 | Callback + deps on separate lines |
 | | `hook-deps-per-line` 🔧 | ≤2 inline, >2 multiline |
+| | `hook-file-naming-convention` 🔧 | Hook files in `hooks/` subfolders: `use-{verb}-{module-singular}` or `use-{module-plural}-list` |
+| | `hook-function-naming-convention` 🔧 | Exported hook function name must match camelCase of file name (e.g., `use-create-super-admin.ts` → `useCreateSuperAdmin`) |
 | | `react-code-order` 🔧 | refs → state → effects → handlers |
 | **Arrays** | `array-items-per-line` 🔧 | ≤3 inline, >3 multiline |
 | **JSX** | `jsx-simple-element-one-line` 🔧 | Simple children on one line |
@@ -97,6 +99,60 @@ import { Select } from "@/atoms";
 ```
 
 See [AGENTS.md](./AGENTS.md#component-architecture-critical) for full examples.
+
+---
+
+## State Management
+
+| Pattern | When to Use | Examples |
+|---------|-------------|----------|
+| **React Context + Provider** | Complex grouped logic needing a dedicated provider file | `AuthProvider` (login/logout/refresh), `ThemeProvider` (toggle/persistence) |
+| **Zustand stores** | Simple global state — just value + setter, no provider wrapper | Network error state, sidebar open/close |
+
+- Stores live in `src/store/` with barrel export from `index.ts`
+- Store interfaces live in `src/interfaces/`
+
+---
+
+## Error Handling
+
+> **4 layers, each catching errors at a different scope.**
+
+```
+App.tsx
+├── useNetworkErrorStore        → Layer 1: async network errors (offline)
+├── BoundaryErrorClass          → Layer 2: render errors ABOVE the router
+│   ├── ThemeProvider
+│   ├── AuthProvider
+│   ├── RouterProvider
+│   │   └── errorElement={ErrorView}  → Layer 3: render errors INSIDE routes
+│   │       └── Route components
+│   │           └── hooks (try-catch)  → Layer 4: async/API errors
+│   ├── Toaster
+│   └── IndicatorNetworkError
+```
+
+| Layer | Component | Catches | Why needed |
+|-------|-----------|---------|------------|
+| 1 | `useNetworkErrorStore` (Zustand) | Async network errors in hooks | `throw` in async code doesn't reach error boundaries |
+| 2 | `BoundaryErrorClass` | Sync render errors **above** router | If `AuthProvider` or `ThemeProvider` crashes, `errorElement` can't catch it |
+| 3 | `ErrorView` (`errorElement`) | Sync render errors **inside** routes | React Router's built-in error boundary for route components |
+| 4 | `try-catch` in hooks | All async errors | API failures, validation errors — shows toast or sets Zustand store |
+
+### Key files
+
+| File | Purpose |
+|------|---------|
+| `src/utils/error.ts` | Shared helpers (`checkIsNetworkErrorHandler`, `getErrorMessageHandler`) |
+| `src/components/shared/error/boundary/` | `BoundaryErrorClass` — class component error boundary |
+| `src/components/shared/error/network/` | `NetworkError` — full-screen offline UI |
+| `src/components/shared/error/stack/` | `StackError` — full-screen error UI with details |
+| `src/views/error/` | `ErrorView` — route `errorElement` (uses `useRouteError`) |
+| `src/store/network-error.ts` | Zustand store for global network error state |
+
+### Why async errors need Zustand (not error boundaries)
+
+Error boundaries and `errorElement` only catch **synchronous** errors during rendering. Hooks fetch data with `async/await` inside `useEffect` — when an API call fails, `throw error` inside an async function becomes an **unhandled promise rejection**, not a render error. The Zustand store bridges this gap: hooks call `onSetNetworkError()` → `App.tsx` reads the store → renders `<NetworkError />`.
 
 ---
 

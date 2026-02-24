@@ -1,5 +1,5 @@
 import type { VariantProps } from "class-variance-authority";
-import type { ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 import type {
     AccordionEnum,
@@ -36,3 +36,13 @@ export type InputType = `${InputEnum}`;
 export type InputVariantType = `${InputVariantEnum}`;
 
 export type LogoSizeType = `${LogoSizeEnum}`;
+
+export type TableExpandStateType = {
+    isExpanded: boolean,
+    onToggleExpand: () => void,
+};
+
+export type TableColumnType<T> = {
+    header?: string,
+    onRender: (item: T, expandState: TableExpandStateType) => ReactNode,
+};

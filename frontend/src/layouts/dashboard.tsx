@@ -1,57 +1,48 @@
-import { useCallback, useState } from "react";
 import { Outlet } from "react-router-dom";
 
+import { Button } from "@/atoms";
 import { Sidebar } from "@/components";
-import { SidebarContext } from "@/contexts";
+import { labelsConstants } from "@/constants";
+import { ButtonVariantEnum } from "@/enums";
+import { useSidebarStore } from "@/store";
 
 export const DashboardLayout = () => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-    const closeSidebarHandler = useCallback(
-        () => setIsSidebarOpen(false),
-        [],
-    );
-
-    const toggleSidebarHandler = useCallback(
-        () => setIsSidebarOpen((prev) => !prev),
-        [],
-    );
+    const {
+        isSidebarOpen,
+        onCloseSidebar,
+    } = useSidebarStore();
 
     return (
-        <SidebarContext
-            value={{
-                isSidebarOpen,
-                onCloseSidebar: closeSidebarHandler,
-                onToggleSidebar: toggleSidebarHandler,
-            }}
-        >
-            <div className="flex min-h-screen bg-background">
-                <Sidebar />
-                {isSidebarOpen && (
-                    <div
-                        className="
-                            fixed
-                            inset-0
-                            z-40
-                            bg-black/50
-                            md:hidden
-                        "
-                        onClick={closeSidebarHandler}
-                    />
-                )}
-                <main
+        <div className="flex min-h-screen bg-background">
+            <Sidebar />
+            {isSidebarOpen && (
+                <Button
+                    ariaLabel={labelsConstants.closeSidebar}
+                    variant={ButtonVariantEnum.ICON}
                     className="
-                        ml-0
-                        flex-1
-                        overflow-y-auto
-                        p-3
-                        md:ml-sidebar
-                        md:p-6
+                        fixed
+                        inset-0
+                        z-40
+                        size-full
+                        rounded-none
+                        bg-black/50
+                        md:hidden
                     "
-                >
-                    <Outlet />
-                </main>
-            </div>
-        </SidebarContext>
+                    onClick={onCloseSidebar}
+                />
+            )}
+            <main
+                className="
+                    ml-0
+                    flex-1
+                    overflow-y-auto
+                    p-3
+                    md:ml-sidebar
+                    md:p-6
+                "
+            >
+                <Outlet />
+            </main>
+        </div>
     );
 };

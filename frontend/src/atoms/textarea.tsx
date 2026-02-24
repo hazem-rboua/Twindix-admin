@@ -1,4 +1,4 @@
-import { Textarea as UiTextarea } from "@/ui";
+import { Textarea as TextareaUI } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
 import { Label } from "./label";
@@ -33,7 +33,7 @@ export const Textarea = ({
         )}
     >
         {label && (<Label htmlFor={id}>{label}</Label>)}
-        <UiTextarea
+        <TextareaUI
             disabled={isDisabled}
             id={id}
             placeholder={placeholder}

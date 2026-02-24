@@ -1,26 +1,9 @@
 import type { ReactNode } from "react";
 
-export interface AdminCreateInterface {
-    email: string,
-    name: string,
-    superAdminId: number,
-}
-
-export interface AdminInterface {
-    email: string,
-    id: number,
-    name: string,
-}
-
 export interface AccordionItemInterface {
     content: ReactNode,
     title: string,
     value: string,
-}
-
-export interface CountryInterface {
-    id: number,
-    name: string,
 }
 
 export interface AuthContextInterface {
@@ -50,29 +33,18 @@ export interface LoginResponseInterface {
     message: string,
 }
 
-export interface CountryListResponseInterface {
-    data: CountryInterface[],
-    isSuccess: boolean,
-}
-
 export interface MeResponseInterface {
     data: UserInterface,
     isSuccess: boolean,
 }
 
-export interface RegionInterface {
-    countries: CountryInterface[],
-    id: number,
-    name: string,
-    superAdmins: SuperAdminInterface[],
+export interface NetworkErrorStoreInterface {
+    hasNetworkError: boolean,
+    onClearNetworkError: () => void,
+    onSetNetworkError: () => void,
 }
 
-export interface RegionListResponseInterface {
-    data: RegionInterface[],
-    isSuccess: boolean,
-}
-
-export interface SidebarContextInterface {
+export interface SidebarStoreInterface {
     isSidebarOpen: boolean,
     onCloseSidebar: () => void,
     onToggleSidebar: () => void,
@@ -85,30 +57,19 @@ export interface SidebarItemInterface {
     path: string,
 }
 
-export interface SuperAdminCreateInterface {
-    email: string,
-    name: string,
-    regionId: number,
-    type: string,
-}
-
-export interface SuperAdminInterface {
-    admins: AdminInterface[],
-    email: string,
-    id: number,
-    name: string,
-    region: string,
-    type: string,
-}
-
-export interface SuperAdminListResponseInterface {
-    data: SuperAdminInterface[],
-    isSuccess: boolean,
-}
-
 export interface ThemeContextInterface {
     isDarkMode: boolean,
     onToggleTheme: () => void,
+}
+
+export interface CountryInterface {
+    id: number,
+    name: string,
+}
+
+export interface CountryListResponseInterface {
+    data: CountryInterface[],
+    isSuccess: boolean,
 }
 
 export interface UserInterface {

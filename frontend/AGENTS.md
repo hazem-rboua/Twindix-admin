@@ -51,6 +51,7 @@ frontend/
 │   ├── layouts/               # View layouts (DashboardLayout, AuthLayout, etc.)
 │   ├── routes/                # Route configuration (createBrowserRouter)
 │   ├── services/              # Business logic & API services
+│   ├── store/                 # Zustand global stores
 │   ├── strings/               # UI text strings (for i18n)
 │   ├── types/                 # TypeScript type aliases
 │   ├── ui/                    # Radix/shadcn raw components (auto-generated)
@@ -228,6 +229,106 @@ import { Select } from "@/atoms";
 
 ---
 
+## State Management
+
+| Pattern | When to Use | Examples |
+|---------|-------------|----------|
+| **React Context + Provider** | Complex grouped logic needing a dedicated provider file | `AuthProvider` (login/logout/refresh), `ThemeProvider` (toggle/persistence) |
+| **Zustand stores** | Simple global state — just value + setter, no provider wrapper | Network error state, sidebar open/close |
+
+- Stores live in `src/store/` with barrel export from `index.ts`
+- Store interfaces live in `src/interfaces/`
+- Use zustand selectors to pick individual values: `useStore(({ value }) => value)`
+
+---
+
+## Error Handling Architecture
+
+> **Understanding why each layer exists is critical — they are NOT interchangeable.**
+
+### The 4 Layers
+
+```
+App.tsx
+├── useNetworkErrorStore        → Layer 1: async network errors (offline)
+├── BoundaryErrorClass          → Layer 2: render errors ABOVE the router
+│   ├── ThemeProvider
+│   ├── AuthProvider
+│   ├── RouterProvider
+│   │   └── errorElement={ErrorView}  → Layer 3: render errors INSIDE routes
+│   │       └── Route components
+│   │           └── hooks (try-catch)  → Layer 4: async/API errors
+│   ├── Toaster
+│   └── IndicatorNetworkError
+```
+
+### Layer 1: Zustand Network Error Store
+
+**What:** `useNetworkErrorStore` in `src/store/network-error.ts`
+**Catches:** Offline/network errors from async API calls in hooks
+**Why it exists:** `throw error` inside an `async` function (like in `useEffect`) becomes an **unhandled promise rejection** — neither error boundaries nor `errorElement` can catch it. This is a JavaScript limitation, not a React one.
+
+```typescript
+// ❌ This does NOT reach any error boundary
+useEffect(() => {
+    const fetchHandler = async () => {
+        try {
+            await api.get("/data");
+        } catch (error) {
+            throw error; // unhandled promise rejection — lost!
+        }
+    };
+    fetchHandler();
+}, []);
+
+// ✅ This works — hooks set the Zustand store, App.tsx reads it
+catch (error) {
+    if (!navigator.onLine) onSetNetworkError(); // Zustand store
+    else toast.error(msgsConstants.genericError);
+}
+```
+
+**Flow:** API fails → hook catch block → `onSetNetworkError()` → Zustand store updates → `App.tsx` re-renders → renders `<NetworkError />`
+
+### Layer 2: ErrorBoundary Class Component
+
+**What:** `BoundaryErrorClass` in `src/components/shared/error/boundary/`
+**Catches:** Synchronous render errors **above** the router (providers, toaster, etc.)
+**Why it exists:** `errorElement` lives **inside** the router — if `ThemeProvider`, `AuthProvider`, or `RouterProvider` itself crashes during rendering, nothing catches it without this boundary.
+
+### Layer 3: Route Error Element
+
+**What:** `ErrorView` in `src/views/error/` — used as `errorElement` in route config
+**Catches:** Synchronous render errors **inside** route components
+**Why it exists:** React Router v6.4+ provides built-in error boundaries via `errorElement`. When a route component throws during rendering, this catches it and uses `useRouteError()` to access the error.
+
+### Layer 4: Try-Catch in Hooks
+
+**What:** `try-catch` blocks in every async hook
+**Catches:** All async errors (API failures, validation errors, timeouts)
+**How it handles them:**
+- Network offline → calls `onSetNetworkError()` (Layer 1)
+- Other errors → shows toast via `toast.error()`
+
+### Shared Error Utilities
+
+Both `BoundaryErrorClass` (Layer 2) and `ErrorView` (Layer 3) use the same helper functions from `src/utils/error.ts`:
+
+| Helper | Purpose |
+|--------|---------|
+| `checkIsNetworkErrorHandler(error)` | Returns `true` if offline or error message contains "Network Error" |
+| `getErrorMessageHandler(error)` | Extracts message from `Error` instances, falls back to generic message |
+
+### Error UI Components
+
+| Component | Location | Used by |
+|-----------|----------|---------|
+| `NetworkError` | `src/components/shared/error/network/` | Layer 1 (App.tsx), Layer 2, Layer 3 |
+| `StackError` | `src/components/shared/error/stack/` | Layer 2, Layer 3 |
+| `IndicatorNetworkError` | `src/components/shared/error/network/indicator.tsx` | App.tsx (online/offline toast banner) |
+
+---
+
 ## ESLint Configuration (CRITICAL)
 
 > **MANDATORY:** All code must pass ESLint. Run `pnpm lint:fix` before every commit.
@@ -241,7 +342,7 @@ import { Select } from "@/atoms";
 | **Full Documentation** | https://github.com/Mohamed-Elhawary/eslint-plugin-code-style |
 | **NPM Package** | https://www.npmjs.com/package/eslint-plugin-code-style |
 | **Local Config** | `eslint.config.js` |
-| **Current Version** | `1.17.0` (check `package.json`) |
+| **Current Version** | `2.2.2` (check `package.json`) |
 
 > **Read the full documentation before implementing any code.** The table below is a quick reference.
 
@@ -276,9 +377,9 @@ import { Select } from "@/atoms";
 |------|-------------|
 | `component-props-destructure` 🔧 | Props must be destructured `({ prop })` not `(props)` |
 | `component-props-inline-type` 🔧 | Inline type annotation with proper spacing |
-| `folder-based-naming-convention` 🔧 | Suffix by folder: `views/`→`*View`, `layouts/`→`*Layout`, `constants/`→`*Constants`, `data/`→`*Data`, `strings/`→`*Strings`, `services/`→`*Service`; chained folder names for nested files |
-| `folder-structure-consistency` ⚙️ | Enforce flat vs wrapped folder consistency in module folders; no unnecessary wrappers |
-| `no-redundant-folder-suffix` | Disallow file and folder names that repeat the parent folder suffix |
+| `folder-based-naming-convention` 🔧 ⚙️ | Suffix by folder: `views/`→`*View`, `layouts/`→`*Layout`, `constants/`→`*Constants`, `data/`→`*Data`, `strings/`→`*Strings`, `services/`→`*Service`; chained folder names for nested files; singularizes plural folder names; configurable `chainOrder` with per-path overrides |
+| `folder-structure-consistency` ⚙️ | Enforce flat vs wrapped folder consistency in module folders; no unnecessary wrappers; detects single-child nesting that should be flattened (skips module/organizational folders) |
+| `no-redundant-folder-suffix` | Disallow file and folder names that repeat the parent folder suffix; exception for hook files (`use-*`) in `hooks/` folders |
 | `svg-icon-naming-convention` | SVG components must end with `Icon` suffix |
 
 ### Function Rules
@@ -295,6 +396,8 @@ import { Select } from "@/atoms";
 |------|-------------|
 | `hook-callback-format` 🔧 | Callback on new line, deps on separate line |
 | `hook-deps-per-line` 🔧 ⚙️ | ≤2 deps inline; >2 each on own line |
+| `hook-file-naming-convention` 🔧 | Hook files in `hooks/` subfolders: `use-{verb}-{module-singular}` or `use-{module-plural}-list` |
+| `hook-function-naming-convention` 🔧 | Exported hook function name must match camelCase of file name (e.g., `use-create-super-admin.ts` → `useCreateSuperAdmin`) |
 | `use-state-naming-convention` 🔧 ⚙️ | Boolean state: `is`/`has`/`with`/`without` prefix |
 
 ### Import/Export Rules
@@ -326,7 +429,7 @@ import { Select } from "@/atoms";
 ### TypeScript Rules
 | Rule | Description |
 |------|-------------|
-| `interface-format` 🔧 | PascalCase + `Interface` suffix, camelCase properties |
+| `interface-format` 🔧 | PascalCase + `Interface` suffix, camelCase properties; **verb-first ordering** (`CreateAdminInterface` not `AdminCreateInterface`) |
 | `type-format` 🔧 ⚙️ | PascalCase + `Type` suffix, camelCase properties |
 | `enum-format` 🔧 | PascalCase + `Enum` suffix, UPPER_SNAKE_CASE members |
 | `type-annotation-spacing` 🔧 | No space before `:`, space after |

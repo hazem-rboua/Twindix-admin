@@ -2,7 +2,7 @@ import { Eye, EyeOff, Search } from "lucide-react";
 import { useState } from "react";
 
 import { ButtonTypeEnum, InputEnum, InputVariantEnum } from "@/enums";
-import { Input as UiInput } from "@/ui";
+import { Input as InputUI } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
 import { Label } from "./label";
@@ -65,7 +65,7 @@ export const Input = ({
                         "
                     />
                 )}
-                <UiInput
+                <InputUI
                     disabled={isDisabled}
                     id={id}
                     placeholder={placeholder}

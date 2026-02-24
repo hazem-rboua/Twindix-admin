@@ -1,5 +1,5 @@
 import { OrientationEnum } from "@/enums";
-import { Separator as UiSeparator } from "@/ui";
+import { Separator as SeparatorUI } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
 export const Separator = ({
@@ -9,7 +9,7 @@ export const Separator = ({
     className?: string,
     orientation?: OrientationEnum,
 }) => (
-    <UiSeparator
+    <SeparatorUI
         orientation={orientation}
         className={generateClassNameHandler(
             "bg-muted",

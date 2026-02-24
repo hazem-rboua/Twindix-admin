@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 import {
-    Dialog as UiDialog,
+    Dialog as DialogUI,
     DialogContent,
     DialogDescription,
     DialogHeader,
@@ -26,7 +26,7 @@ export const Dialog = ({
     onOpenChange: (isOpen: boolean) => void,
     title: string,
 }) => (
-    <UiDialog
+    <DialogUI
         open={isOpen}
         onOpenChange={onOpenChange}
     >
@@ -42,5 +42,5 @@ export const Dialog = ({
             </DialogHeader>
             {children}
         </DialogContent>
-    </UiDialog>
+    </DialogUI>
 );

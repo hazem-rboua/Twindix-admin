@@ -1,5 +1,5 @@
 import { ButtonTypeEnum, CheckboxVariantEnum } from "@/enums";
-import { Checkbox as UiCheckbox } from "@/ui";
+import { Checkbox as CheckboxUI } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
 import { Label } from "./label";
@@ -52,7 +52,7 @@ export const Checkbox = ({
                 className,
             )}
         >
-            <UiCheckbox
+            <CheckboxUI
                 checked={isChecked}
                 disabled={isDisabled}
                 onCheckedChange={onChange}

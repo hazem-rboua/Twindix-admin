@@ -1,7 +1,7 @@
 import { AccordionEnum } from "@/enums";
 import type { AccordionItemInterface } from "@/interfaces";
 import {
-    Accordion as UiAccordion,
+    Accordion as AccordionUI,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
@@ -17,7 +17,7 @@ export const Accordion = ({
     items: AccordionItemInterface[],
     type?: AccordionEnum,
 }) => (
-    <UiAccordion
+    <AccordionUI
         className={generateClassNameHandler(className)}
         collapsible={type === AccordionEnum.SINGLE}
         type={type}
@@ -44,5 +44,5 @@ export const Accordion = ({
                 <AccordionContent>{content}</AccordionContent>
             </AccordionItem>
         ))}
-    </UiAccordion>
+    </AccordionUI>
 );

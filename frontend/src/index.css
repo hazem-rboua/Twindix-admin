@@ -16,6 +16,9 @@
     --raw-text-secondary: #6B7280;
     --raw-text-muted: #9CA3AF;
     --raw-text-dark: #000000;
+    --raw-info: #3B82F6;
+    --raw-gold: #B8860B;
+    --raw-slate: #2C3E50;
     --raw-warning: #F59E0B;
     --raw-warning-dark: #D97706;
     --raw-success: #16A34A;
@@ -50,6 +53,9 @@
     --raw-text-secondary: #9CA3AF;
     --raw-text-muted: #6B7280;
     --raw-text-dark: #F9FAFB;
+    --raw-info: #60A5FA;
+    --raw-gold: #D4A017;
+    --raw-slate: #3A5068;
     --raw-warning: #FBBF24;
     --raw-warning-dark: #F59E0B;
     --raw-success: #34D399;
@@ -85,6 +91,9 @@
     --color-text-muted: var(--raw-text-muted);
     --color-text-dark: var(--raw-text-dark);
 
+    --color-info: var(--raw-info);
+    --color-gold: var(--raw-gold);
+    --color-slate: var(--raw-slate);
     --color-warning: var(--raw-warning);
     --color-warning-dark: var(--raw-warning-dark);
     --color-success: var(--raw-success);
@@ -138,7 +147,7 @@ body {
     min-height: 100vh;
 }
 
-.bg-gradient-auth {
+.bg-gradient {
     background: linear-gradient(
         to top,
         var(--color-primary-dark) 0%,
@@ -157,9 +166,3 @@ body {
     background-clip: text;
 }
 
-.text-gradient-error {
-    background: linear-gradient(to right, var(--color-error), var(--color-text-dark));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}

@@ -1,4 +1,4 @@
-import { RadioGroup as UiRadioGroup, RadioGroupItem } from "@/ui";
+import { RadioGroup as RadioGroupUI, RadioGroupItem } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
 import { Label } from "./label";
@@ -28,7 +28,7 @@ export const RadioGroup = ({
         )}
     >
         {label && (<Label>{label}</Label>)}
-        <UiRadioGroup
+        <RadioGroupUI
             disabled={isDisabled}
             value={value}
             onValueChange={onChange}
@@ -48,6 +48,6 @@ export const RadioGroup = ({
                     <Label htmlFor={value}>{label}</Label>
                 </div>
             ))}
-        </UiRadioGroup>
+        </RadioGroupUI>
     </div>
 );

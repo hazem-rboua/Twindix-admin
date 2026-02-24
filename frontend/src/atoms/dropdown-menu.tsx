@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import type { DropdownMenuItemInterface } from "@/interfaces";
 import {
-    DropdownMenu as UiDropdownMenu,
+    DropdownMenu as DropdownMenuUI,
     DropdownMenuContent,
     DropdownMenuGroup,
     DropdownMenuItem,
@@ -20,7 +20,7 @@ export const DropdownMenu = ({
     items: DropdownMenuItemInterface[],
     trigger: ReactNode,
 }) => (
-    <UiDropdownMenu>
+    <DropdownMenuUI>
         <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
         <DropdownMenuContent align="end">
             {header && (
@@ -50,5 +50,5 @@ export const DropdownMenu = ({
                 ))}
             </DropdownMenuGroup>
         </DropdownMenuContent>
-    </UiDropdownMenu>
+    </DropdownMenuUI>
 );

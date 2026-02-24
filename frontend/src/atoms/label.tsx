@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Label as UiLabel } from "@/ui";
+import { Label as LabelUI } from "@/ui";
 import { generateClassNameHandler } from "@/utils";
 
 export const Label = ({
@@ -14,7 +14,7 @@ export const Label = ({
     htmlFor?: string,
     isRequired?: boolean,
 }) => (
-    <UiLabel
+    <LabelUI
         htmlFor={htmlFor}
         className={generateClassNameHandler(
             "text-sm font-medium text-text-primary",
@@ -23,5 +23,5 @@ export const Label = ({
     >
         {children}
         {isRequired && <span className="ml-0.5 text-error">*</span>}
-    </UiLabel>
+    </LabelUI>
 );
