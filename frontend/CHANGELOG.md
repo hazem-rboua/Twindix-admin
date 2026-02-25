@@ -12,50 +12,83 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.4.0] - 2026-02-25
+## [0.3.0] - 2026-02-25
 
-**Error Boundary, Table UX Improvements & Theme Colors**
+**Super Admins Module, Error Handling, Table System & Zustand Stores**
 
 ### Added
 
-**Components**
+**State Management**
+- Install `zustand` for simple global state management
+- Create `src/store/` folder with barrel export
+- Add `useNetworkErrorStore` zustand store for global network error handling
+- Add `NetworkErrorStoreInterface` to `src/interfaces/common.ts`
+
+**Error Handling (4-layer architecture)**
 - Create `BoundaryErrorClass` error boundary (class component) at `src/components/shared/error/boundary/`
 - Wraps `RouterProvider` in `App.tsx` to catch render errors above the router scope
-
-**Utilities**
+- Create `ErrorView` as route `errorElement` for both dashboard and auth routes
+- Create `NetworkError`, `StackError`, and `IndicatorNetworkError` UI components
 - Create `src/utils/error.ts` with shared error helpers (`checkIsNetworkErrorHandler`, `getErrorMessageHandler`)
-- Helpers are shared between `BoundaryErrorClass` (render errors) and `ErrorView` (route errors)
+- Error handling layers: Zustand store (network offline) → ErrorBoundary (render errors above router) → `errorElement` (route errors) → try-catch (async/API errors)
 
 **Atoms**
 - Add `Loader` atom with centered flex wrapper — always centers in parent container
 - Add `LoaderSizeEnum` with `SM`, `MD`, `LG`, `XL` sizes
-- Table atom renders "N/A" placeholder when `onRender` returns falsy content
+- Add `Table` atom with expand state, loading placeholder, and empty cell fallback ("N/A")
+- Add `TableColumnType` and `TableExpandStateType` to types
+
+**Components**
+- Add `TableActions` shared component with permissions, edit, suspend, remove buttons
+- Add `TableExpandedContent` shared component for expandable row content
 
 **Theme**
 - Add `--color-info` (`#3B82F6` / dark: `#60A5FA`) for edit actions
 - Add `--color-gold` (`#B8860B` / dark: `#D4A017`) for suspend actions
 - Add `--color-slate` (`#2C3E50` / dark: `#3A5068`) for permissions actions
 
+**Super Admins Hooks**
+- Create `useSuperAdminsList` — fetches paginated super admins list (fully integrated with view)
+- Create `useGetSuperAdmin` — fetches single super admin by ID (prepared, not yet integrated)
+- Create `useCreateSuperAdmin` — creates a new super admin (prepared, not yet integrated)
+- Create `useUpdateSuperAdmin` — updates an existing super admin (prepared, not yet integrated)
+- Create `useDeleteSuperAdmin` — deletes a super admin by ID (integrated with view)
+- Create `usePauseSuperAdmin` — pauses a super admin account (prepared, not yet integrated)
+- Create `useResumeSuperAdmin` — resumes a paused super admin account (prepared, not yet integrated)
+
+**Regions Hooks**
+- Create `useRegionsList` — fetches regions list (integrated with view)
+
+**Views**
+- Add access control sub-pages with nested routes (super admins, regions)
+- Refactor `SuperAdminsAccessControlView` to use `Table` atom and column definitions
+- Refactor `RegionsAccessControlView` with expandable region cards, country badges, and assigned super admins
+- Add `ErrorView` for route error handling
+
 **Constants**
 - Add `emptyCell` to `labelsConstants` for table empty cell placeholder
 
+**Documentation**
+- Add Error Handling Architecture section to `AGENTS.md`, `CLAUDE.md`, and `README.md`
+- Add State Management section to `AGENTS.md` and `CLAUDE.md`
+- Add `store/` folder to project structure in `AGENTS.md`
+
 ### Changed
 
-**Error Handling Architecture**
-- Move error helpers from `boundary/` component to `src/utils/error.ts` (shared across components and views)
-- `ErrorView` now imports helpers from `@/utils` instead of `@/components`
-- Error handling layers: Zustand store (network offline) → ErrorBoundary (render errors above router) → `errorElement` (route errors) → try-catch (async/API errors)
-
 **Table Actions**
-- Replace hardcoded hex colors (`#2C3E50`, `#3B82F6`, `#B8860B`) with theme tokens (`bg-slate`, `bg-info`, `bg-gold`)
+- Replace hardcoded hex colors with theme tokens (`bg-slate`, `bg-info`, `bg-gold`)
 - Add smooth hover brightness effect (`hover:brightness-125 transition-all duration-200`) to action buttons
 
 **Super Admins View**
 - Type column returns `null` for empty `user_type` so table renders "N/A" placeholder
 
+### Dependencies
+
+- `zustand` 5.0.11
+
 ---
 
-## [0.3.2] - 2026-02-25
+## [0.2.2] - 2026-02-25
 
 **Sidebar Store, Hook Scope Separation & Accessibility Fixes**
 
@@ -79,6 +112,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 **Accessibility**
 - Replace sidebar overlay `<div onClick>` with `<button>` element in `DashboardLayout` (SonarQube S6848/S1082)
+- Add `ariaLabel` prop to `Button` atom, make `children` optional
 
 ### Removed
 
@@ -90,7 +124,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.3.1] - 2026-02-24
+## [0.2.1] - 2026-02-24
 
 **Reorganize Interfaces by Domain**
 
@@ -104,48 +138,68 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.3.0] - 2026-02-22
+## [0.2.0] - 2026-02-16
 
-**Global Network Error Store with Zustand**
+**Core UI, Auth System & Page Scaffold**
 
 ### Added
 
-**State Management**
-- Install `zustand` for simple global state management
-- Create `src/store/` folder with barrel export
-- Add `useNetworkErrorStore` zustand store for global network error handling
-- Add `NetworkErrorStoreInterface` to `src/interfaces/common.ts`
-- Render full-screen `<NetworkError />` overlay in `App.tsx` when store has error
+**UI Atoms**
+- Create `Accordion`, `Alert`, `Avatar`, `Button`, `Checkbox`, `Dialog`, `Input`, `Label`, `Logo`, `RadioGroup`, `ScrollArea`, `Select`, `Separator`, `Textarea` atoms wrapping shadcn/Radix UI primitives
+- Create matching shadcn `ui/` components for each atom
+
+**Authentication**
+- Add `AuthProvider` context with login, logout, token refresh, and user fetching
+- Add `LoginView`, `ForgotPasswordView`, `ResetPasswordView` auth views
+- Add `AuthLayout` for unauthenticated pages
+- Add auth services (`login`, `logout`, `forgotPassword`, `resetPassword`)
+- Add reset password validation schema
+
+**Views (Page Stubs)**
+- Create stub views for all dashboard pages: Home, Access Control, Assessments, Benchmarks, Contact, Discounts, Job Title Questions, Manage Enrollments, Orders, Packages, Templates
+
+**Components**
+- Add `PageHeader` shared component
+- Add `Sidebar` shared component
+
+**Project Structure**
+- Set up folder structure: `apis/`, `assets/`, `constants/`, `contexts/`, `data/`, `schemas/`, `services/`, `types/`, `utils/`, `views/`
+- Configure app routes with `createBrowserRouter` and `RouterProvider`
+- Add `DashboardLayout` with sidebar and page header
+
+**Utilities**
+- Add `axios` instance with interceptors for auth tokens
+- Add cookie helpers for token management
+- Add `generateClassNameHandler` utility (clsx + tailwind-merge)
+
+**Constants**
+- Add `buttonsConstants`, `labelsConstants`, `msgsConstants`, `titlesConstants`, `descriptionsConstants`
+- Add API endpoint data and auth form data
 
 **Documentation**
-- Add "State Management" section to `CLAUDE.md` and `AGENTS.md` documenting Context+Provider vs Zustand pattern
-- Add `store/` folder to project structure in `AGENTS.md`
+- Add VERSION SYNC instruction for automatic plugin documentation fetching when version changes
+- Update rule count from 76 to 77 rules in `AGENTS.md` and `CLAUDE.md`
 
 ### Changed
 
-**Hooks**
-- Replace local `networkError` state with global zustand store in `useSuperAdminsList`, `useGetSuperAdmin`, and `useRegionsList`
-- Remove `networkError` from hook return objects
-
-**Views**
-- Remove `networkError` destructuring and `throw` from `RegionsAccessControlView` and `SuperAdminsAccessControlView`
+**ESLint**
+- Update `eslint-plugin-code-style` to v2.0.17
 
 ### Dependencies
 
-- `zustand` 5.0.11
-
----
-
-## [0.1.1] - 2026-02-06
-
-**Documentation Sync with eslint-plugin-code-style v1.15.0**
-
-### Changed
-
-**ESLint Documentation**
-- Update rule count from 76 to 77 rules in `AGENTS.md` and `CLAUDE.md`
-- Add current version reference (`1.15.0`) to ESLint sections
-- Add VERSION SYNC instruction for automatic plugin documentation fetching when version changes
+**Production**
+- `@radix-ui/react-accordion` - Accordion component
+- `@radix-ui/react-checkbox` - Checkbox component
+- `@radix-ui/react-label` - Label component
+- `@radix-ui/react-radio-group` - Radio group component
+- `@radix-ui/react-scroll-area` - Scroll area component
+- `@radix-ui/react-select` - Select component
+- `@radix-ui/react-separator` - Separator component
+- `class-variance-authority` - Component variants
+- `clsx` - Conditional classes
+- `lucide-react` - Icon library
+- `tailwind-merge` - Tailwind class deduplication
+- `zod` - Schema validation
 
 ---
 
@@ -212,9 +266,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[0.4.0]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.4.0
-[0.3.2]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.3.2
-[0.3.1]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.3.1
 [0.3.0]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.3.0
-[0.1.1]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.1.1
+[0.2.2]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.2.2
+[0.2.1]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.2.1
+[0.2.0]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.2.0
 [0.1.0]: https://github.com/hazem-rboua/Twindix-admin/releases/tag/v0.1.0

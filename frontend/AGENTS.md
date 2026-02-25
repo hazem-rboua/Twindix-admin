@@ -492,6 +492,8 @@ pnpm lint:fix     # Auto-fix lint issues
 
 ### Versioning (SemVer)
 
+The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and the changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
 | Bump | When |
 |------|------|
 | **PATCH** | Bug fixes, minor tweaks |
